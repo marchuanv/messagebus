@@ -1,0 +1,33 @@
+{
+    "name": "messagebus",
+    "version": "1.0.0",
+    "author": "Marchuan Van Der Merwe",
+    "description": "subscribe and publish messages over http and websockets",
+    "type": "module",
+    "license": "UNLICENSED",
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/marchuanv/messagebus"
+    },
+    "engines": {
+        "npm": ">=8.1.0",
+        "node": ">=16.13.2"
+    },
+    "files": [
+        "lib"
+    ],
+    "main": "messagebus.mjs",
+    "scripts": {
+        "start": "node messagebus.mjs",
+        "test": "node specs/queue-spec.mjs"
+    },
+    "keywords": [
+        "message",
+        "messagebus",
+        "subscribe",
+        "publish"
+    ],
+    "bin": {
+        "messagebus": "bin/cli.mjs"
+    }
+}

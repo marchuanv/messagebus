@@ -8,11 +8,12 @@ const subscriptionMessage = new Message('35d501a9-29aa-4ff7-9eaa-e70880f70446', 
 
 const publisherMessageQueue = new PublisherMessageQueue();
 
-const DefaultTimeout = 100;
+const MinTimeoutMill = 100;
+const MaxTimeoutMill = 5000;
 
 export class MessageBus {
     constructor() {
-        privateBag.set(this, DefaultTimeout);
+        privateBag.set(this, MinTimeoutMill);
     }
     /**
      * @param { String } name
@@ -63,7 +64,7 @@ export class MessageBus {
 async function handle() {
     const publisherMessage = publisherMessageQueue.dequeue();
     if (publisherMessage) {
-        privateBag.set(this, 5000);
+        privateBag.set(this, MaxTimeoutMill);
         let results_A = null;
         let results_B = null;
         let results_C = null;
@@ -84,10 +85,10 @@ async function handle() {
         } else if (results_C) {
             await publisherMessage.notify(results_C);
         }
-        privateBag.set(this, DefaultTimeout);
+        privateBag.set(this, MinTimeoutMill);
     } else {
         let intervalMil = privateBag.get(this);
-        if (intervalMil < 5000) {
+        if (intervalMil < MaxTimeoutMill) {
             intervalMil = intervalMil + 100;
         }
         privateBag.set(this, intervalMil);

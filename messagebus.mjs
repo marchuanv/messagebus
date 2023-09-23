@@ -55,7 +55,7 @@ export class MessageBus {
     async start() {
         await handle.call(this);
         const intervalMil = privateBag.get(this);
-        setTimeout(async () => {
+        await setTimeout(async () => {
             await this.start();
         }, intervalMil);
     }

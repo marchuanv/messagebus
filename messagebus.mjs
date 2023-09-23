@@ -4,7 +4,7 @@ import { Message, MessagePriority, MessageType } from './lib/message.mjs';
 const publishMessage = new Message('991109a9-27c3-4ca9-b30e-f3f267d7dc59', 'publish', MessagePriority.Low, MessageType.Publish, null);
 const subscriptionMessage = new Message('35d501a9-29aa-4ff7-9eaa-e70880f70446', 'subscriptions', MessagePriority.Low, MessageType.Subscription, null);
 
-export class MessageBus extends Message {
+export class MessageBus {
     /**
      * @param { String } Id
      * @param { String } channel

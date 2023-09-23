@@ -10,8 +10,8 @@
         "url": "http://github.com/marchuanv/messagebus"
     },
     "engines": {
-        "npm": ">=8.1.0",
-        "node": ">=16.13.2"
+        "npm": ">=8.19.4",
+        "node": ">=16.20.2"
     },
     "files": [
         "lib"
@@ -19,7 +19,7 @@
     "main": "messagebus.mjs",
     "scripts": {
         "start": "node messagebus.mjs",
-        "test": "node specs/queue-spec.mjs"
+        "test": "node specs/index.mjs"
     },
     "keywords": [
         "message",
@@ -27,6 +27,9 @@
         "subscribe",
         "publish"
     ],
+    "dependencies": {
+        "jasmine": "^5.1.0"
+    },
     "bin": {
         "messagebus": "bin/cli.mjs"
     }

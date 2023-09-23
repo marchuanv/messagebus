@@ -52,7 +52,7 @@ export class MessageBus {
         });
     }
     async start() {
-        await trigger.call(this);
+        await handle.call(this);
         const intervalMil = privateBag.get(this);
         setTimeout(async () => {
             await this.start();
@@ -60,7 +60,7 @@ export class MessageBus {
     }
 };
 
-async function trigger() {
+async function handle() {
     const publisherMessage = publisherMessageQueue.dequeue();
     if (publisherMessage) {
         privateBag.set(this, 5000);

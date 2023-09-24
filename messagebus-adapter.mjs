@@ -16,9 +16,6 @@ export class MessageBusAdapter {
         if (!(message instanceof Message)) {
             throw new TypeError(`message is not an instance of ${Message.name}`);
         }
-        if (!(typeof this.isMessageReady === 'function')) {
-            throw new TypeError(`class extending the ${MessageBusAdapter.name} does not have an isMessageReady(message) method`);
-        }
         if (!(typeof this.receiveMessage === 'function')) {
             throw new TypeError(`class extending the ${MessageBusAdapter.name} does not have a receiveMessage(message) method`);
         }
@@ -27,13 +24,11 @@ export class MessageBusAdapter {
             await this.connect();
         }, 100);
     }
-    async connect() {
+    async send(data) {  
         const message = privateBag.get(this);
-        if (this.isMessageReady(message)) {
-            const promise = messageBus.subscribe(message);
-            messageBus.publish(message);
-            const receivedMessage = await promise;
-            await this.receiveMessage(receivedMessage);
-        }
+        const promise = messageBus.subscribe(message);
+        messageBus.publish(message);
+        const receivedMessage = await promise;
+        await this.receiveMessage(receivedMessage);
     }
 };

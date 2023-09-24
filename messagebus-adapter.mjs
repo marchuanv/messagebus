@@ -1,5 +1,6 @@
 import { MessageBus } from './lib/messagebus.mjs';
 import { Message } from './lib/message.mjs';
+const privateBag = new WeakMap();
 const messageBus = new MessageBus();
 export class MessageBusAdapter {
     /**
@@ -21,25 +22,18 @@ export class MessageBusAdapter {
         if (!(typeof this.receiveMessage === 'function')) {
             throw new TypeError(`class extending the ${MessageBusAdapter.name} does not have a receiveMessage(message) method`);
         }
-        setImmediate(async () => {
-            this.status = 'ready';
-            if (this.isMessageReady()) {
-                const promise = messageBus.subscribe(message);
-                messageBus.publish(message);
-                const receivedMessage = await promise;
-                await this.receiveMessage(receivedMessage);
-            }
-        });
+        privateBag.set(this, message);
+        setInterval(async () => {
+            await this.connect();
+        }, 100);
     }
-    ready() {
-        return new Promise(async(resolve) => {
-            setTimeout(async () => {
-                if (this.status === 'ready'){
-                    resolve('ready');
-                } else {
-                    await this.ready();
-                }
-            }, 100);
-        });
+    async connect() {
+        if (this.isMessageReady()) {
+            const message = privateBag.get(this);
+            const promise = messageBus.subscribe(message);
+            messageBus.publish(message);
+            const receivedMessage = await promise;
+            await this.receiveMessage(receivedMessage);
+        }
     }
 };

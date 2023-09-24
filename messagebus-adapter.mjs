@@ -1,7 +1,8 @@
 import { MessageBus } from './lib/messagebus.mjs';
-import { Message } from './lib/message.mjs';
+import { Message, MessageType } from './lib/message.mjs';
 import { Envelope } from './lib/envelope.mjs';
-const privateBag = new WeakMap();
+import { Properties, Property } from './lib/properties.mjs';
+const properties = new Properties();
 const messageBus = new MessageBus();
 export class MessageBusAdapter {
     /**
@@ -14,22 +15,26 @@ export class MessageBusAdapter {
         if (new.target === MessageBusAdapter) {
             throw new TypeError('MessageBusAdapter should be extended');
         }
-        if (!(envelope instanceof Envelope)) {
-            throw new TypeError(`envelope is not an instance of ${Envelope.name}`);
-        }
-        if (!(typeof this.receiveMessage === 'function')) {
-            throw new TypeError(`class extending the ${MessageBusAdapter.name} does not have a receiveMessage(message) method`);
-        }
-        privateBag.set(this, envelope);
+        properties.set(this, new Property(Envelope.prototype, { 
+            name: 'envelope',
+            value: envelope
+        }));
+        properties.set(this, new Property(Function.prototype, { 
+            name: 'receiveMessage',
+            value: this.receiveMessage
+        }));
     }
-    async send(data) {  
-        const message = privateBag.get(this);
+    /**
+     * @param { String } messageName
+     * @param { Object } messageData
+     */
+    async send(messageName, messageData, priority) {
+        const property = properties.get(this, Envelope.prototype, 'envelope');
+        const envelope = property.value;
+        const message = new Message(messageName, envelope.channel, envelope.priority, MessageType.Default, messageData);
         const promise = messageBus.subscribe(message);
         messageBus.publish(message);
         const receivedMessage = await promise;
         await this.receiveMessage(receivedMessage);
-        setInterval(async () => {
-            await this.connect();
-        }, 100);
     }
 };

@@ -11,15 +11,15 @@ class TestMessageBusAdapter extends MessageBusAdapter {
 }
 describe('when publishing an apple message on the fruit channel',() => {
     it('should notify all apple subscribers', async () => {
-        const testMessageBusAdapter = new TestMessageBusAdapter(new Message('apple', 'fruit', MessagePriority.High, MessageType.Default));
-        const expectedMsg = await testMessageBusAdapter.send({ message: 'Hello From Apple' });
+        const adapter = new TestMessageBusAdapter(new Message('apple', 'fruit', MessagePriority.High, MessageType.Default));
+        const expectedMsg = await adapter.send('Hello From Apple');
         expect(JSON.stringify(expectedMsg.data)).toBe(JSON.stringify({ message: 'Hello From Apple' }));
     });
 });
 describe('when publishing a tomato message on the fruit channel',() => {
     it('should notify all tomato subscribers', async () => {
-        const testMessageBusAdapter = new TestMessageBusAdapter(new Message('tomato', 'fruit', MessagePriority.High, MessageType.Default));
-        const expectedMsg = await testMessageBusAdapter.send( { message: 'Hello From Tomato' });
+        const adapter = new TestMessageBusAdapter(new Message('tomato', 'fruit', MessagePriority.High, MessageType.Default));
+        const expectedMsg = await adapter.send('Hello From Tomato');
         expect(JSON.stringify(expectedMsg.data)).toBe(JSON.stringify({ message: 'Hello From Tomato' }));
     });
 });

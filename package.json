@@ -16,9 +16,9 @@
     "files": [
         "lib"
     ],
-    "main": "messagebus.mjs",
+    "main": "messagebus-adapter.mjs",
     "scripts": {
-        "start": "node messagebus.mjs",
+        "start": "node messagebus-adapter.mjs",
         "test": "node specs/index.mjs"
     },
     "keywords": [

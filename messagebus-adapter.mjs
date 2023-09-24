@@ -29,7 +29,7 @@ export class MessageBusAdapter {
     }
     async connect() {
         const message = privateBag.get(this);
-        if (this.isMessageReady()) {
+        if (this.isMessageReady(message)) {
             const promise = messageBus.subscribe(message);
             messageBus.publish(message);
             const receivedMessage = await promise;

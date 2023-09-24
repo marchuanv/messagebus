@@ -17,7 +17,7 @@ export class MessageBusAdapter {
             throw new TypeError(`message is not an instance of ${Message.name}`);
         }
         if (!(typeof this.isMessageReady === 'function')) {
-            throw new TypeError(`class extending the ${MessageBusAdapter.name} does not have an isMessageReady method`);
+            throw new TypeError(`class extending the ${MessageBusAdapter.name} does not have an isMessageReady(message) method`);
         }
         if (!(typeof this.receiveMessage === 'function')) {
             throw new TypeError(`class extending the ${MessageBusAdapter.name} does not have a receiveMessage(message) method`);
@@ -28,8 +28,8 @@ export class MessageBusAdapter {
         }, 100);
     }
     async connect() {
+        const message = privateBag.get(this);
         if (this.isMessageReady()) {
-            const message = privateBag.get(this);
             const promise = messageBus.subscribe(message);
             messageBus.publish(message);
             const receivedMessage = await promise;

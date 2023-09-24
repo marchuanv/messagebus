@@ -5,7 +5,7 @@ class TestMessageBusAdapter extends MessageBusAdapter {
     constructor(message) {
         super(message);
     }
-    isMessageReady() {
+    isMessageReady(message) {
         return true;
     }
     async getMessage() {

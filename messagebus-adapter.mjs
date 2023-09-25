@@ -1,7 +1,10 @@
 import { MessageBus } from './lib/messagebus.mjs';
-import { Message, MessageType } from './lib/message.mjs';
-import { Address, Channel, Envelope } from './lib/envelope.mjs';
+import { Message } from './lib/message.mjs';
+import { Envelope } from './lib/envelope.mjs';
 import { Properties } from './lib/properties.mjs';
+import { Channel } from './lib/channel.mjs';
+import { Address } from './lib/address.mjs';
+import { MessageType } from './lib/messagetype.mjs';
 const properties = new Properties();
 const messageBus = new MessageBus();
 export class MessageBusAdapter {
@@ -16,31 +19,23 @@ export class MessageBusAdapter {
         }
         const channelAddress = new Address(hostName, hostPort);
         const channel = new Channel(channelName, channelAddress);
-        properties.set(this, Address.prototype, { channelAddress });
-        properties.set(this, Channel.prototype, { channel });
-        properties.set(this, Function.prototype, { receive: this.receive });
+        properties.set(this, Address.prototype, 'channelAddress', channelAddress);
+        properties.set(this, Channel.prototype, 'channel', channel);
     }
     /**
      * @param { Priority } priority
-     * @param { Object } messageData
+     * @param { Object } data
      */
-    async send(priority, messageData) {
+    async send(priority, data) {
         const recipientAddress = new Address(hostName, hostPort);
-        {
-            const { obj } = properties.get(this, Channel.prototype, 'channel');
-            let envelope = new Envelope(obj, recipientAddress, priority);
-        }
-        
-
-        const { obj } = properties.get(this, Envelope.prototype, 'envelope');
-        const message = new Message(messageName, obj.channel, obj.priority, MessageType.Default, messageData);
+        const channel = properties.get(this, Channel.prototype, 'channel');
+        const envelope = new Envelope(channel, recipientAddress, priority);
+        const message = new Message(envelope.channel, envelope.priority, MessageType.Default);
+        message.data = data;
         const promise = messageBus.subscribe(message);
         messageBus.publish(message);
-        {
-            const receivedMessage = await promise;
-            const { obj } = properties.get(this, Function.prototype, 'receive');
-            await obj(receivedMessage);
-        }
+        const receivedMessage = await promise;
+        await this.receive(receivedMessage);
     }
     /**
      * @param { Message } message

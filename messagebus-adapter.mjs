@@ -1,28 +1,37 @@
 import { MessageBus } from './lib/messagebus.mjs';
 import { Message, MessageType } from './lib/message.mjs';
-import { Envelope } from './lib/envelope.mjs';
+import { Address, Channel, Envelope } from './lib/envelope.mjs';
 import { Properties } from './lib/properties.mjs';
 const properties = new Properties();
 const messageBus = new MessageBus();
 export class MessageBusAdapter {
     /**
-     * @param { Envelope } envelope 
-     */
-    constructor(envelope) {
-        if (!new.target) {
-            throw new TypeError('calling MessageBusAdapter constructor without new is invalid');
-        }
+     * @param { String } channelName
+     * @param { String } hostName
+     * @param { Number } hostPort
+    */
+    constructor(channelName, hostName, hostPort) {
         if (new.target === MessageBusAdapter) {
             throw new TypeError('MessageBusAdapter should be extended');
         }
-        properties.set(this, Envelope.prototype, { envelope });
+        const channelAddress = new Address(hostName, hostPort);
+        const channel = new Channel(channelName, channelAddress);
+        properties.set(this, Address.prototype, { channelAddress });
+        properties.set(this, Channel.prototype, { channel });
         properties.set(this, Function.prototype, { receive: this.receive });
     }
     /**
-     * @param { String } messageName
+     * @param { MessagePriority } messagePriority
      * @param { Object } messageData
      */
-    async send(messageName, messageData) {
+    async send(messagePriority, messageData) {
+        const recipientAddress = new Address(hostName, hostPort);
+        {
+            const { obj } = properties.get(this, Channel.prototype, 'channel');
+            let envelope = new Envelope(obj, recipientAddress, messagePriority);
+        }
+        
+
         const { obj } = properties.get(this, Envelope.prototype, 'envelope');
         const message = new Message(messageName, obj.channel, obj.priority, MessageType.Default, messageData);
         const promise = messageBus.subscribe(message);
@@ -34,7 +43,7 @@ export class MessageBusAdapter {
         }
     }
     /**
-     * @param { Message } message 
+     * @param { Message } message
      */
     async receive(message) {
         await this.receiveMessage(message);

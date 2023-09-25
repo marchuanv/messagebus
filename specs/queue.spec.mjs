@@ -1,12 +1,13 @@
 import { Address, Channel, Envelope } from '../lib/envelope.mjs';
-import { MessagePriority, MessageType } from '../lib/message.mjs';
+import { MessageType } from '../lib/message.mjs';
+import { Priority } from '../lib/priority.mjs';
 import { MessageBusAdapter } from '../messagebus-adapter.mjs';
 class TestMessageBusAdapter extends MessageBusAdapter {
     /**
      * @param { String } channelName
      * @param { String } hostName
      * @param { Number } hostPort
-     * @param { MessagePriority } priority
+     * @param { Priority } priority
      */
     constructor(channelName, hostName, hostPort, priority) {
         const recipientAddress = new Address(hostName, hostPort);

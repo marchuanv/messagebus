@@ -21,14 +21,14 @@ export class MessageBusAdapter {
         properties.set(this, Function.prototype, { receive: this.receive });
     }
     /**
-     * @param { MessagePriority } messagePriority
+     * @param { Priority } priority
      * @param { Object } messageData
      */
-    async send(messagePriority, messageData) {
+    async send(priority, messageData) {
         const recipientAddress = new Address(hostName, hostPort);
         {
             const { obj } = properties.get(this, Channel.prototype, 'channel');
-            let envelope = new Envelope(obj, recipientAddress, messagePriority);
+            let envelope = new Envelope(obj, recipientAddress, priority);
         }
         
 

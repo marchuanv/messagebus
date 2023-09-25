@@ -1,7 +1,7 @@
 import { MessageBus } from './lib/messagebus.mjs';
 import { Message, MessageType } from './lib/message.mjs';
 import { Envelope } from './lib/envelope.mjs';
-import { Properties, Property } from './lib/properties.mjs';
+import { Properties } from './lib/properties.mjs';
 const properties = new Properties();
 const messageBus = new MessageBus();
 export class MessageBusAdapter {
@@ -15,26 +15,28 @@ export class MessageBusAdapter {
         if (new.target === MessageBusAdapter) {
             throw new TypeError('MessageBusAdapter should be extended');
         }
-        properties.set(this, new Property(Envelope.prototype, { 
-            name: 'envelope',
-            value: envelope
-        }));
-        properties.set(this, new Property(Function.prototype, { 
-            name: 'receiveMessage',
-            value: this.receiveMessage
-        }));
+        properties.set(this, Envelope.prototype, { envelope });
+        properties.set(this, Function.prototype, { receive: this.receive });
     }
     /**
      * @param { String } messageName
      * @param { Object } messageData
      */
-    async send(messageName, messageData, priority) {
-        const property = properties.get(this, Envelope.prototype, 'envelope');
-        const envelope = property.value;
-        const message = new Message(messageName, envelope.channel, envelope.priority, MessageType.Default, messageData);
+    async send(messageName, messageData) {
+        const { obj } = properties.get(this, Envelope.prototype, 'envelope');
+        const message = new Message(messageName, obj.channel, obj.priority, MessageType.Default, messageData);
         const promise = messageBus.subscribe(message);
         messageBus.publish(message);
-        const receivedMessage = await promise;
-        await this.receiveMessage(receivedMessage);
+        {
+            const receivedMessage = await promise;
+            const { obj } = properties.get(this, Function.prototype, 'receive');
+            await obj(receivedMessage);
+        }
+    }
+    /**
+     * @param { Message } message 
+     */
+    async receive(message) {
+        await this.receiveMessage(message);
     }
 };

@@ -1,5 +1,5 @@
 import { Address, Channel, Envelope } from '../lib/envelope.mjs';
-import { Message, MessagePriority, MessageType } from '../lib/message.mjs';
+import { MessagePriority, MessageType } from '../lib/message.mjs';
 import { MessageBusAdapter } from '../messagebus-adapter.mjs';
 class TestMessageBusAdapter extends MessageBusAdapter {
     /**

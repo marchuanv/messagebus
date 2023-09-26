@@ -23,10 +23,16 @@ export class MessageBusAdapter {
         properties.set(this, Channel.prototype, 'channel', channel);
     }
     /**
+     * @returns { Channel }
+     */
+     get channel() {
+        return properties.get(this, Channel.prototype, 'channel');
+    }
+    /**
      * @param { Priority } priority
      * @param { Object } data
      */
-    async send(priority, data) {
+    async send(hostName, hostPort, priority, data) {
         const recipientAddress = new Address(hostName, hostPort);
         const channel = properties.get(this, Channel.prototype, 'channel');
         const envelope = new Envelope(channel, recipientAddress, priority);
@@ -35,12 +41,12 @@ export class MessageBusAdapter {
         const promise = messageBus.subscribe(message);
         messageBus.publish(message);
         const receivedMessage = await promise;
-        await this.receive(receivedMessage);
+        return await this.receive(receivedMessage);
     }
     /**
      * @param { Message } message
      */
     async receive(message) {
-        await this.receiveMessage(message);
+        return await this.receiveMessage(message);
     }
 };

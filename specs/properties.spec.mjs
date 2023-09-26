@@ -1,7 +1,7 @@
 import { Properties } from "../lib/properties.mjs";
 const properties = new Properties();
 const context = {};
-fdescribe('when creating a property given a context with a name and value',() => {
+describe('when creating a property given a context with a name and value',() => {
     it('should so without error', async () => {
         const _hostName = 'localhost';
         const _hostPort = 3000;

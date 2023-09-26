@@ -28,7 +28,10 @@
         "publish"
     ],
     "dependencies": {
-        "jasmine": "^5.1.0"
+        "express": "^4.18.2",
+        "jasmine": "^5.1.0",
+        "pem": "^1.14.8",
+        "ws": "^8.14.2"
     },
     "bin": {
         "messagebus": "bin/cli.mjs"

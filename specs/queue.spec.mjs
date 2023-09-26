@@ -25,3 +25,12 @@ describe('when publishing a tomato message on the fruit channel',() => {
         expect(JSON.stringify(expectedMsg.data)).toBe(JSON.stringify({ message: 'Hello From Tomato Subscriber' }));
     });
 });
+describe('when publishing a tomato message on the fruit channel',() => {
+    it('should notify all tomato subscribers', async () => {
+        const adapter = new TestMessageBusAdapter('Apple', 'localhost', 3000);
+        let expectedMsg = await adapter.send('localhost',3000, Priority.Medium,{ message: 'Hello From Apple Publisher' });
+        expect(JSON.stringify(expectedMsg.data)).toBe(JSON.stringify({ message: 'Hello From Apple Subscriber' }));
+        expectedMsg = await adapter.send('localhost',3000, Priority.High,{ message: 'Hello From Apple Publisher' });
+        expect(JSON.stringify(expectedMsg.data)).toBe(JSON.stringify({ message: 'Hello From Apple Subscriber' }));
+    });
+});

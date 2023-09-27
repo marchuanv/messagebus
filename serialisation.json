@@ -1,0 +1,506 @@
+{
+    "5d51a4cf-3115-40dc-988f-a135abfe35cd": {
+        "Id": "5d51a4cf-3115-40dc-988f-a135abfe35cd",
+        "name": "currentChildIndex",
+        "isArray": false,
+        "type": {
+            "Id": "87cab040-512f-40e5-bf02-16cb70ac4abb",
+            "name": "Number"
+        },
+        "value": -1
+    },
+    "c60a9d1c-baba-45aa-8c2d-7b86d6ce95ad": {
+        "36eaf3d7-3d4b-4115-996a-1a520a45d702": {
+            "ee98db57-a629-4d89-aebe-cc913c5fc8b3": {
+                "Id": "ee98db57-a629-4d89-aebe-cc913c5fc8b3",
+                "name": "currentChildIndex",
+                "isArray": false,
+                "type": {
+                    "Id": "87cab040-512f-40e5-bf02-16cb70ac4abb",
+                    "name": "Number"
+                },
+                "value": -1
+            },
+            "e836d491-a9af-4ebc-b075-ef4e5b4e23c7": {
+                "4c4f3637-b45c-4a54-9f9b-fc932d2f6b9f": {
+                    "bdca6199-a306-4767-b440-f0e200a72b7e": {
+                        "Id": "bdca6199-a306-4767-b440-f0e200a72b7e",
+                        "name": "hostPort",
+                        "isArray": false,
+                        "type": {
+                            "Id": "87cab040-512f-40e5-bf02-16cb70ac4abb",
+                            "name": "Number"
+                        },
+                        "value": 3000
+                    },
+                    "945d7714-a5c0-4846-aae1-5d8350c6a591": {
+                        "Id": "945d7714-a5c0-4846-aae1-5d8350c6a591",
+                        "name": "hostName",
+                        "isArray": false,
+                        "type": {
+                            "Id": "78bdce42-14d5-4bf5-9495-277e006940c4",
+                            "name": "String"
+                        },
+                        "value": "localhost"
+                    },
+                    "Id": "4c4f3637-b45c-4a54-9f9b-fc932d2f6b9f",
+                    "type": {
+                        "Id": "8337317b-386e-4cf9-8738-78bd12f1ec92",
+                        "name": "Address"
+                    }
+                },
+                "Id": "e836d491-a9af-4ebc-b075-ef4e5b4e23c7",
+                "name": "recipient",
+                "isArray": false,
+                "type": {
+                    "Id": "8337317b-386e-4cf9-8738-78bd12f1ec92",
+                    "name": "Address"
+                },
+                "value": null
+            },
+            "c064ec31-2f31-4c08-9f0a-750dcf9b7a69": {
+                "40568b64-342a-4cc6-9256-b656af07d26b": {
+                    "c74247a9-7dc4-4a0d-a2c7-ba7b149865b5": {
+                        "Id": "c74247a9-7dc4-4a0d-a2c7-ba7b149865b5",
+                        "name": "children",
+                        "isArray": true,
+                        "type": {
+                            "Id": "28c6b420-f450-4f1b-9594-51a786a3d758",
+                            "name": "Message"
+                        },
+                        "value": null
+                    },
+                    "fb4eb9c7-5639-4584-85a7-2fb45727660b": {
+                        "Id": "fb4eb9c7-5639-4584-85a7-2fb45727660b",
+                        "name": "data",
+                        "isArray": false,
+                        "type": {
+                            "Id": "049a3d22-2975-4903-887c-1b63787445a8",
+                            "name": "Object"
+                        },
+                        "value": {
+                            "message": "Hello From Apple Publisher"
+                        }
+                    },
+                    "c7ee3685-7edc-438f-ae68-cf487c7c16b3": {
+                        "1c301d11-e57e-4434-9a83-04052e39368a": {
+                            "fb669dc9-925c-47fd-830e-8b21d18ad1dd": {
+                                "Id": "fb669dc9-925c-47fd-830e-8b21d18ad1dd",
+                                "name": "DefaultMessageType",
+                                "isArray": false,
+                                "type": {
+                                    "Id": "cf08a920-4dd8-48fe-a419-1f7e5b2f1554",
+                                    "name": "DefaultMessageType"
+                                },
+                                "value": null
+                            },
+                            "Id": "1c301d11-e57e-4434-9a83-04052e39368a",
+                            "type": {
+                                "Id": "cf08a920-4dd8-48fe-a419-1f7e5b2f1554",
+                                "name": "DefaultMessageType"
+                            }
+                        },
+                        "Id": "c7ee3685-7edc-438f-ae68-cf487c7c16b3",
+                        "name": "type",
+                        "isArray": false,
+                        "type": {
+                            "Id": "b88e46da-75e3-41b4-9355-745f792ae8c5",
+                            "name": "MessageType"
+                        },
+                        "value": null
+                    },
+                    "52a6c714-a309-443f-95ac-82c737f8024c": {
+                        "3528d412-50ac-4150-a972-8153adb2978e": {
+                            "f8d83a87-a4ca-4ec3-ad15-faf6f1f5c092": {
+                                "Id": "f8d83a87-a4ca-4ec3-ad15-faf6f1f5c092",
+                                "name": "HighPriority",
+                                "isArray": false,
+                                "type": {
+                                    "Id": "04d08753-e93a-41e5-8117-4b1c6a75d2f4",
+                                    "name": "HighPriority"
+                                },
+                                "value": null
+                            },
+                            "Id": "3528d412-50ac-4150-a972-8153adb2978e",
+                            "type": {
+                                "Id": "04d08753-e93a-41e5-8117-4b1c6a75d2f4",
+                                "name": "HighPriority"
+                            }
+                        },
+                        "Id": "52a6c714-a309-443f-95ac-82c737f8024c",
+                        "name": "priority",
+                        "isArray": false,
+                        "type": {
+                            "Id": "109b4c73-57c4-4b14-b703-28edfa2190b5",
+                            "name": "Priority"
+                        },
+                        "value": null
+                    },
+                    "4bb10f4e-730d-4bb8-86fb-2f1293a41adb": {
+                        "c1fe6c19-0a2d-4d2b-97a8-a598dda684a9": {
+                            "e3d44db4-6f7e-48eb-950c-c0e132f6032b": {
+                                "4c4f3637-b45c-4a54-9f9b-fc932d2f6b9f": {
+                                    "bdca6199-a306-4767-b440-f0e200a72b7e": {
+                                        "Id": "bdca6199-a306-4767-b440-f0e200a72b7e",
+                                        "name": "hostPort",
+                                        "isArray": false,
+                                        "type": {
+                                            "Id": "87cab040-512f-40e5-bf02-16cb70ac4abb",
+                                            "name": "Number"
+                                        },
+                                        "value": 3000
+                                    },
+                                    "945d7714-a5c0-4846-aae1-5d8350c6a591": {
+                                        "Id": "945d7714-a5c0-4846-aae1-5d8350c6a591",
+                                        "name": "hostName",
+                                        "isArray": false,
+                                        "type": {
+                                            "Id": "78bdce42-14d5-4bf5-9495-277e006940c4",
+                                            "name": "String"
+                                        },
+                                        "value": "localhost"
+                                    },
+                                    "Id": "4c4f3637-b45c-4a54-9f9b-fc932d2f6b9f",
+                                    "type": {
+                                        "Id": "8337317b-386e-4cf9-8738-78bd12f1ec92",
+                                        "name": "Address"
+                                    }
+                                },
+                                "Id": "e3d44db4-6f7e-48eb-950c-c0e132f6032b",
+                                "name": "address",
+                                "isArray": false,
+                                "type": {
+                                    "Id": "8337317b-386e-4cf9-8738-78bd12f1ec92",
+                                    "name": "Address"
+                                },
+                                "value": null
+                            },
+                            "412c62dd-f98e-4344-9651-2a896acae3b4": {
+                                "Id": "412c62dd-f98e-4344-9651-2a896acae3b4",
+                                "name": "name",
+                                "isArray": false,
+                                "type": {
+                                    "Id": "78bdce42-14d5-4bf5-9495-277e006940c4",
+                                    "name": "String"
+                                },
+                                "value": "Apple"
+                            },
+                            "Id": "c1fe6c19-0a2d-4d2b-97a8-a598dda684a9",
+                            "type": {
+                                "Id": "6f65d180-2553-4bee-a747-73dd88b2feac",
+                                "name": "Channel"
+                            }
+                        },
+                        "Id": "4bb10f4e-730d-4bb8-86fb-2f1293a41adb",
+                        "name": "channel",
+                        "isArray": false,
+                        "type": {
+                            "Id": "6f65d180-2553-4bee-a747-73dd88b2feac",
+                            "name": "Channel"
+                        },
+                        "value": null
+                    },
+                    "Id": "40568b64-342a-4cc6-9256-b656af07d26b",
+                    "type": {
+                        "Id": "28c6b420-f450-4f1b-9594-51a786a3d758",
+                        "name": "Message"
+                    }
+                },
+                "Id": "c064ec31-2f31-4c08-9f0a-750dcf9b7a69",
+                "name": "children",
+                "isArray": true,
+                "type": {
+                    "Id": "28c6b420-f450-4f1b-9594-51a786a3d758",
+                    "name": "Message"
+                },
+                "value": null
+            },
+            "cecfbd42-d9f7-4af3-b223-1a932156d779": {
+                "Id": "cecfbd42-d9f7-4af3-b223-1a932156d779",
+                "name": "data",
+                "isArray": false,
+                "type": {
+                    "Id": "049a3d22-2975-4903-887c-1b63787445a8",
+                    "name": "Object"
+                },
+                "value": {}
+            },
+            "8415e38b-5327-4a04-aaf7-7d4ead40457a": {
+                "1c301d11-e57e-4434-9a83-04052e39368a": {
+                    "fb669dc9-925c-47fd-830e-8b21d18ad1dd": {
+                        "Id": "fb669dc9-925c-47fd-830e-8b21d18ad1dd",
+                        "name": "DefaultMessageType",
+                        "isArray": false,
+                        "type": {
+                            "Id": "cf08a920-4dd8-48fe-a419-1f7e5b2f1554",
+                            "name": "DefaultMessageType"
+                        },
+                        "value": null
+                    },
+                    "Id": "1c301d11-e57e-4434-9a83-04052e39368a",
+                    "type": {
+                        "Id": "cf08a920-4dd8-48fe-a419-1f7e5b2f1554",
+                        "name": "DefaultMessageType"
+                    }
+                },
+                "Id": "8415e38b-5327-4a04-aaf7-7d4ead40457a",
+                "name": "type",
+                "isArray": false,
+                "type": {
+                    "Id": "b88e46da-75e3-41b4-9355-745f792ae8c5",
+                    "name": "MessageType"
+                },
+                "value": null
+            },
+            "142a557f-2ffb-4d1b-b5a1-aedd02efaf80": {
+                "3528d412-50ac-4150-a972-8153adb2978e": {
+                    "f8d83a87-a4ca-4ec3-ad15-faf6f1f5c092": {
+                        "Id": "f8d83a87-a4ca-4ec3-ad15-faf6f1f5c092",
+                        "name": "HighPriority",
+                        "isArray": false,
+                        "type": {
+                            "Id": "04d08753-e93a-41e5-8117-4b1c6a75d2f4",
+                            "name": "HighPriority"
+                        },
+                        "value": null
+                    },
+                    "Id": "3528d412-50ac-4150-a972-8153adb2978e",
+                    "type": {
+                        "Id": "04d08753-e93a-41e5-8117-4b1c6a75d2f4",
+                        "name": "HighPriority"
+                    }
+                },
+                "Id": "142a557f-2ffb-4d1b-b5a1-aedd02efaf80",
+                "name": "priority",
+                "isArray": false,
+                "type": {
+                    "Id": "109b4c73-57c4-4b14-b703-28edfa2190b5",
+                    "name": "Priority"
+                },
+                "value": null
+            },
+            "db4de040-5d6f-46a1-b72e-7abac123cf70": {
+                "c1fe6c19-0a2d-4d2b-97a8-a598dda684a9": {
+                    "e3d44db4-6f7e-48eb-950c-c0e132f6032b": {
+                        "4c4f3637-b45c-4a54-9f9b-fc932d2f6b9f": {
+                            "bdca6199-a306-4767-b440-f0e200a72b7e": {
+                                "Id": "bdca6199-a306-4767-b440-f0e200a72b7e",
+                                "name": "hostPort",
+                                "isArray": false,
+                                "type": {
+                                    "Id": "87cab040-512f-40e5-bf02-16cb70ac4abb",
+                                    "name": "Number"
+                                },
+                                "value": 3000
+                            },
+                            "945d7714-a5c0-4846-aae1-5d8350c6a591": {
+                                "Id": "945d7714-a5c0-4846-aae1-5d8350c6a591",
+                                "name": "hostName",
+                                "isArray": false,
+                                "type": {
+                                    "Id": "78bdce42-14d5-4bf5-9495-277e006940c4",
+                                    "name": "String"
+                                },
+                                "value": "localhost"
+                            },
+                            "Id": "4c4f3637-b45c-4a54-9f9b-fc932d2f6b9f",
+                            "type": {
+                                "Id": "8337317b-386e-4cf9-8738-78bd12f1ec92",
+                                "name": "Address"
+                            }
+                        },
+                        "Id": "e3d44db4-6f7e-48eb-950c-c0e132f6032b",
+                        "name": "address",
+                        "isArray": false,
+                        "type": {
+                            "Id": "8337317b-386e-4cf9-8738-78bd12f1ec92",
+                            "name": "Address"
+                        },
+                        "value": null
+                    },
+                    "412c62dd-f98e-4344-9651-2a896acae3b4": {
+                        "Id": "412c62dd-f98e-4344-9651-2a896acae3b4",
+                        "name": "name",
+                        "isArray": false,
+                        "type": {
+                            "Id": "78bdce42-14d5-4bf5-9495-277e006940c4",
+                            "name": "String"
+                        },
+                        "value": "Apple"
+                    },
+                    "Id": "c1fe6c19-0a2d-4d2b-97a8-a598dda684a9",
+                    "type": {
+                        "Id": "6f65d180-2553-4bee-a747-73dd88b2feac",
+                        "name": "Channel"
+                    }
+                },
+                "Id": "db4de040-5d6f-46a1-b72e-7abac123cf70",
+                "name": "channel",
+                "isArray": false,
+                "type": {
+                    "Id": "6f65d180-2553-4bee-a747-73dd88b2feac",
+                    "name": "Channel"
+                },
+                "value": null
+            },
+            "Id": "36eaf3d7-3d4b-4115-996a-1a520a45d702",
+            "type": {
+                "Id": "edf8829a-520f-42ac-880a-62258412106a",
+                "name": "Envelope"
+            }
+        },
+        "Id": "c60a9d1c-baba-45aa-8c2d-7b86d6ce95ad",
+        "name": "parent",
+        "isArray": false,
+        "type": {
+            "Id": "28c6b420-f450-4f1b-9594-51a786a3d758",
+            "name": "Message"
+        },
+        "value": null
+    },
+    "c74247a9-7dc4-4a0d-a2c7-ba7b149865b5": {
+        "Id": "c74247a9-7dc4-4a0d-a2c7-ba7b149865b5",
+        "name": "children",
+        "isArray": true,
+        "type": {
+            "Id": "28c6b420-f450-4f1b-9594-51a786a3d758",
+            "name": "Message"
+        },
+        "value": null
+    },
+    "fb4eb9c7-5639-4584-85a7-2fb45727660b": {
+        "Id": "fb4eb9c7-5639-4584-85a7-2fb45727660b",
+        "name": "data",
+        "isArray": false,
+        "type": {
+            "Id": "049a3d22-2975-4903-887c-1b63787445a8",
+            "name": "Object"
+        },
+        "value": {
+            "message": "Hello From Apple Publisher"
+        }
+    },
+    "c7ee3685-7edc-438f-ae68-cf487c7c16b3": {
+        "1c301d11-e57e-4434-9a83-04052e39368a": {
+            "fb669dc9-925c-47fd-830e-8b21d18ad1dd": {
+                "Id": "fb669dc9-925c-47fd-830e-8b21d18ad1dd",
+                "name": "DefaultMessageType",
+                "isArray": false,
+                "type": {
+                    "Id": "cf08a920-4dd8-48fe-a419-1f7e5b2f1554",
+                    "name": "DefaultMessageType"
+                },
+                "value": null
+            },
+            "Id": "1c301d11-e57e-4434-9a83-04052e39368a",
+            "type": {
+                "Id": "cf08a920-4dd8-48fe-a419-1f7e5b2f1554",
+                "name": "DefaultMessageType"
+            }
+        },
+        "Id": "c7ee3685-7edc-438f-ae68-cf487c7c16b3",
+        "name": "type",
+        "isArray": false,
+        "type": {
+            "Id": "b88e46da-75e3-41b4-9355-745f792ae8c5",
+            "name": "MessageType"
+        },
+        "value": null
+    },
+    "52a6c714-a309-443f-95ac-82c737f8024c": {
+        "3528d412-50ac-4150-a972-8153adb2978e": {
+            "f8d83a87-a4ca-4ec3-ad15-faf6f1f5c092": {
+                "Id": "f8d83a87-a4ca-4ec3-ad15-faf6f1f5c092",
+                "name": "HighPriority",
+                "isArray": false,
+                "type": {
+                    "Id": "04d08753-e93a-41e5-8117-4b1c6a75d2f4",
+                    "name": "HighPriority"
+                },
+                "value": null
+            },
+            "Id": "3528d412-50ac-4150-a972-8153adb2978e",
+            "type": {
+                "Id": "04d08753-e93a-41e5-8117-4b1c6a75d2f4",
+                "name": "HighPriority"
+            }
+        },
+        "Id": "52a6c714-a309-443f-95ac-82c737f8024c",
+        "name": "priority",
+        "isArray": false,
+        "type": {
+            "Id": "109b4c73-57c4-4b14-b703-28edfa2190b5",
+            "name": "Priority"
+        },
+        "value": null
+    },
+    "4bb10f4e-730d-4bb8-86fb-2f1293a41adb": {
+        "c1fe6c19-0a2d-4d2b-97a8-a598dda684a9": {
+            "e3d44db4-6f7e-48eb-950c-c0e132f6032b": {
+                "4c4f3637-b45c-4a54-9f9b-fc932d2f6b9f": {
+                    "bdca6199-a306-4767-b440-f0e200a72b7e": {
+                        "Id": "bdca6199-a306-4767-b440-f0e200a72b7e",
+                        "name": "hostPort",
+                        "isArray": false,
+                        "type": {
+                            "Id": "87cab040-512f-40e5-bf02-16cb70ac4abb",
+                            "name": "Number"
+                        },
+                        "value": 3000
+                    },
+                    "945d7714-a5c0-4846-aae1-5d8350c6a591": {
+                        "Id": "945d7714-a5c0-4846-aae1-5d8350c6a591",
+                        "name": "hostName",
+                        "isArray": false,
+                        "type": {
+                            "Id": "78bdce42-14d5-4bf5-9495-277e006940c4",
+                            "name": "String"
+                        },
+                        "value": "localhost"
+                    },
+                    "Id": "4c4f3637-b45c-4a54-9f9b-fc932d2f6b9f",
+                    "type": {
+                        "Id": "8337317b-386e-4cf9-8738-78bd12f1ec92",
+                        "name": "Address"
+                    }
+                },
+                "Id": "e3d44db4-6f7e-48eb-950c-c0e132f6032b",
+                "name": "address",
+                "isArray": false,
+                "type": {
+                    "Id": "8337317b-386e-4cf9-8738-78bd12f1ec92",
+                    "name": "Address"
+                },
+                "value": null
+            },
+            "412c62dd-f98e-4344-9651-2a896acae3b4": {
+                "Id": "412c62dd-f98e-4344-9651-2a896acae3b4",
+                "name": "name",
+                "isArray": false,
+                "type": {
+                    "Id": "78bdce42-14d5-4bf5-9495-277e006940c4",
+                    "name": "String"
+                },
+                "value": "Apple"
+            },
+            "Id": "c1fe6c19-0a2d-4d2b-97a8-a598dda684a9",
+            "type": {
+                "Id": "6f65d180-2553-4bee-a747-73dd88b2feac",
+                "name": "Channel"
+            }
+        },
+        "Id": "4bb10f4e-730d-4bb8-86fb-2f1293a41adb",
+        "name": "channel",
+        "isArray": false,
+        "type": {
+            "Id": "6f65d180-2553-4bee-a747-73dd88b2feac",
+            "name": "Channel"
+        },
+        "value": null
+    },
+    "Id": "40568b64-342a-4cc6-9256-b656af07d26b",
+    "type": {
+        "Id": "28c6b420-f450-4f1b-9594-51a786a3d758",
+        "name": "Message"
+    }
+}

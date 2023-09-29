@@ -6,9 +6,7 @@ import { Message } from './lib/message.mjs';
 import { MessageBus } from './lib/messagebus.mjs';
 import { MessageType } from './lib/messagetype.mjs';
 import { Priority } from './lib/priority.mjs';
-import { Properties } from './lib/properties.mjs';
 import { MessageSubscription } from './subscription.mjs';
-const properties = new Properties();
 export class MessageBusAdapter extends MessageBus {
     /**
      * @param { Server } httpServer

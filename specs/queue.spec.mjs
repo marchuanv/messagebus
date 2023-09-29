@@ -12,7 +12,7 @@ class TestMessageBusAdapter extends MessageBusAdapter {
         return message;
     }
 }
-fdescribe('when publishing an apple message on the fruit channel', () => {
+describe('when publishing an apple message on the fruit channel', () => {
     it('should notify all apple subscribers', async () => {
         const adapter = new TestMessageBusAdapter('Apple', 'localhost', 3000);
         const expectedMsg = await adapter.send(Priority.High, { message: 'Hello From Apple Publisher' });

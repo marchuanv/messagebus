@@ -1,6 +1,6 @@
 {
-    "5d51a4cf-3115-40dc-988f-a135abfe35cd": {
-        "Id": "5d51a4cf-3115-40dc-988f-a135abfe35cd",
+    "4b0e2444-86f6-4cea-9b18-4b305bce6edd": {
+        "Id": "4b0e2444-86f6-4cea-9b18-4b305bce6edd",
         "name": "currentChildIndex",
         "isArray": false,
         "type": {
@@ -9,10 +9,10 @@
         },
         "value": -1
     },
-    "c60a9d1c-baba-45aa-8c2d-7b86d6ce95ad": {
-        "36eaf3d7-3d4b-4115-996a-1a520a45d702": {
-            "ee98db57-a629-4d89-aebe-cc913c5fc8b3": {
-                "Id": "ee98db57-a629-4d89-aebe-cc913c5fc8b3",
+    "bfd2f678-817a-4797-aa86-e732884cb826": {
+        "fa614cac-2db2-4c4a-b5b3-2849de0fe46d": {
+            "f41787bc-eafd-4cbe-a122-bf79764e2815": {
+                "Id": "f41787bc-eafd-4cbe-a122-bf79764e2815",
                 "name": "currentChildIndex",
                 "isArray": false,
                 "type": {
@@ -21,47 +21,20 @@
                 },
                 "value": -1
             },
-            "e836d491-a9af-4ebc-b075-ef4e5b4e23c7": {
-                "4c4f3637-b45c-4a54-9f9b-fc932d2f6b9f": {
-                    "bdca6199-a306-4767-b440-f0e200a72b7e": {
-                        "Id": "bdca6199-a306-4767-b440-f0e200a72b7e",
-                        "name": "hostPort",
-                        "isArray": false,
-                        "type": {
-                            "Id": "87cab040-512f-40e5-bf02-16cb70ac4abb",
-                            "name": "Number"
-                        },
-                        "value": 3000
-                    },
-                    "945d7714-a5c0-4846-aae1-5d8350c6a591": {
-                        "Id": "945d7714-a5c0-4846-aae1-5d8350c6a591",
-                        "name": "hostName",
-                        "isArray": false,
-                        "type": {
-                            "Id": "78bdce42-14d5-4bf5-9495-277e006940c4",
-                            "name": "String"
-                        },
-                        "value": "localhost"
-                    },
-                    "Id": "4c4f3637-b45c-4a54-9f9b-fc932d2f6b9f",
-                    "type": {
-                        "Id": "8337317b-386e-4cf9-8738-78bd12f1ec92",
-                        "name": "Address"
-                    }
-                },
-                "Id": "e836d491-a9af-4ebc-b075-ef4e5b4e23c7",
+            "eec51041-9585-4c93-94a7-785335217bdd": {
+                "Id": "eec51041-9585-4c93-94a7-785335217bdd",
                 "name": "recipient",
                 "isArray": false,
                 "type": {
                     "Id": "8337317b-386e-4cf9-8738-78bd12f1ec92",
                     "name": "Address"
                 },
-                "value": null
+                "value": "{}"
             },
-            "c064ec31-2f31-4c08-9f0a-750dcf9b7a69": {
-                "40568b64-342a-4cc6-9256-b656af07d26b": {
-                    "c74247a9-7dc4-4a0d-a2c7-ba7b149865b5": {
-                        "Id": "c74247a9-7dc4-4a0d-a2c7-ba7b149865b5",
+            "07eb9ce0-9a2d-4337-b398-b87e0dbf4f28": {
+                "8197d176-ee61-4272-9054-3519b21589fa": {
+                    "6ecc4f91-ad84-44ee-80f5-4ee05275a116": {
+                        "Id": "6ecc4f91-ad84-44ee-80f5-4ee05275a116",
                         "name": "children",
                         "isArray": true,
                         "type": {
@@ -70,8 +43,8 @@
                         },
                         "value": null
                     },
-                    "fb4eb9c7-5639-4584-85a7-2fb45727660b": {
-                        "Id": "fb4eb9c7-5639-4584-85a7-2fb45727660b",
+                    "7d97246e-b515-4ec5-88bb-b4a4e738712c": {
+                        "Id": "7d97246e-b515-4ec5-88bb-b4a4e738712c",
                         "name": "data",
                         "isArray": false,
                         "type": {
@@ -79,13 +52,13 @@
                             "name": "Object"
                         },
                         "value": {
-                            "message": "Hello From Apple Publisher"
+                            "message": "Hello From Tomato Publisher"
                         }
                     },
-                    "c7ee3685-7edc-438f-ae68-cf487c7c16b3": {
-                        "1c301d11-e57e-4434-9a83-04052e39368a": {
-                            "fb669dc9-925c-47fd-830e-8b21d18ad1dd": {
-                                "Id": "fb669dc9-925c-47fd-830e-8b21d18ad1dd",
+                    "8f711128-2d5d-4e72-a363-fa7a34dd6f4c": {
+                        "0318aaf4-2a63-4889-95f1-da070f5432d1": {
+                            "67749ad3-2b92-4567-911b-30ce3d716719": {
+                                "Id": "67749ad3-2b92-4567-911b-30ce3d716719",
                                 "name": "DefaultMessageType",
                                 "isArray": false,
                                 "type": {
@@ -94,13 +67,13 @@
                                 },
                                 "value": null
                             },
-                            "Id": "1c301d11-e57e-4434-9a83-04052e39368a",
+                            "Id": "0318aaf4-2a63-4889-95f1-da070f5432d1",
                             "type": {
                                 "Id": "cf08a920-4dd8-48fe-a419-1f7e5b2f1554",
                                 "name": "DefaultMessageType"
                             }
                         },
-                        "Id": "c7ee3685-7edc-438f-ae68-cf487c7c16b3",
+                        "Id": "8f711128-2d5d-4e72-a363-fa7a34dd6f4c",
                         "name": "type",
                         "isArray": false,
                         "type": {
@@ -109,25 +82,25 @@
                         },
                         "value": null
                     },
-                    "52a6c714-a309-443f-95ac-82c737f8024c": {
-                        "3528d412-50ac-4150-a972-8153adb2978e": {
-                            "f8d83a87-a4ca-4ec3-ad15-faf6f1f5c092": {
-                                "Id": "f8d83a87-a4ca-4ec3-ad15-faf6f1f5c092",
-                                "name": "HighPriority",
+                    "78787e9c-8ccb-4a5c-83fc-f3b3c09b84cf": {
+                        "e4e944e9-0ac7-41ec-9bc3-982ab50be4c5": {
+                            "09a5bfd1-08bf-4ca3-afa6-2c3276e1b3a2": {
+                                "Id": "09a5bfd1-08bf-4ca3-afa6-2c3276e1b3a2",
+                                "name": "MediumPriority",
                                 "isArray": false,
                                 "type": {
-                                    "Id": "04d08753-e93a-41e5-8117-4b1c6a75d2f4",
-                                    "name": "HighPriority"
+                                    "Id": "f6fbdf99-e8fb-48c8-9111-79f31e37dc2b",
+                                    "name": "MediumPriority"
                                 },
                                 "value": null
                             },
-                            "Id": "3528d412-50ac-4150-a972-8153adb2978e",
+                            "Id": "e4e944e9-0ac7-41ec-9bc3-982ab50be4c5",
                             "type": {
-                                "Id": "04d08753-e93a-41e5-8117-4b1c6a75d2f4",
-                                "name": "HighPriority"
+                                "Id": "f6fbdf99-e8fb-48c8-9111-79f31e37dc2b",
+                                "name": "MediumPriority"
                             }
                         },
-                        "Id": "52a6c714-a309-443f-95ac-82c737f8024c",
+                        "Id": "78787e9c-8ccb-4a5c-83fc-f3b3c09b84cf",
                         "name": "priority",
                         "isArray": false,
                         "type": {
@@ -136,62 +109,35 @@
                         },
                         "value": null
                     },
-                    "4bb10f4e-730d-4bb8-86fb-2f1293a41adb": {
-                        "c1fe6c19-0a2d-4d2b-97a8-a598dda684a9": {
-                            "e3d44db4-6f7e-48eb-950c-c0e132f6032b": {
-                                "4c4f3637-b45c-4a54-9f9b-fc932d2f6b9f": {
-                                    "bdca6199-a306-4767-b440-f0e200a72b7e": {
-                                        "Id": "bdca6199-a306-4767-b440-f0e200a72b7e",
-                                        "name": "hostPort",
-                                        "isArray": false,
-                                        "type": {
-                                            "Id": "87cab040-512f-40e5-bf02-16cb70ac4abb",
-                                            "name": "Number"
-                                        },
-                                        "value": 3000
-                                    },
-                                    "945d7714-a5c0-4846-aae1-5d8350c6a591": {
-                                        "Id": "945d7714-a5c0-4846-aae1-5d8350c6a591",
-                                        "name": "hostName",
-                                        "isArray": false,
-                                        "type": {
-                                            "Id": "78bdce42-14d5-4bf5-9495-277e006940c4",
-                                            "name": "String"
-                                        },
-                                        "value": "localhost"
-                                    },
-                                    "Id": "4c4f3637-b45c-4a54-9f9b-fc932d2f6b9f",
-                                    "type": {
-                                        "Id": "8337317b-386e-4cf9-8738-78bd12f1ec92",
-                                        "name": "Address"
-                                    }
-                                },
-                                "Id": "e3d44db4-6f7e-48eb-950c-c0e132f6032b",
+                    "88ce5c94-6498-478e-80db-a285ab78026a": {
+                        "9cdc3376-0675-4649-8f09-2ce55875d4b2": {
+                            "36cf8c3c-b1ff-4e4a-98b2-218ad8467ec6": {
+                                "Id": "36cf8c3c-b1ff-4e4a-98b2-218ad8467ec6",
                                 "name": "address",
                                 "isArray": false,
                                 "type": {
                                     "Id": "8337317b-386e-4cf9-8738-78bd12f1ec92",
                                     "name": "Address"
                                 },
-                                "value": null
+                                "value": "{}"
                             },
-                            "412c62dd-f98e-4344-9651-2a896acae3b4": {
-                                "Id": "412c62dd-f98e-4344-9651-2a896acae3b4",
+                            "d05e1211-6802-4494-9681-0c2c0395bc9c": {
+                                "Id": "d05e1211-6802-4494-9681-0c2c0395bc9c",
                                 "name": "name",
                                 "isArray": false,
                                 "type": {
                                     "Id": "78bdce42-14d5-4bf5-9495-277e006940c4",
                                     "name": "String"
                                 },
-                                "value": "Apple"
+                                "value": "Tomato"
                             },
-                            "Id": "c1fe6c19-0a2d-4d2b-97a8-a598dda684a9",
+                            "Id": "9cdc3376-0675-4649-8f09-2ce55875d4b2",
                             "type": {
                                 "Id": "6f65d180-2553-4bee-a747-73dd88b2feac",
                                 "name": "Channel"
                             }
                         },
-                        "Id": "4bb10f4e-730d-4bb8-86fb-2f1293a41adb",
+                        "Id": "88ce5c94-6498-478e-80db-a285ab78026a",
                         "name": "channel",
                         "isArray": false,
                         "type": {
@@ -200,13 +146,13 @@
                         },
                         "value": null
                     },
-                    "Id": "40568b64-342a-4cc6-9256-b656af07d26b",
+                    "Id": "8197d176-ee61-4272-9054-3519b21589fa",
                     "type": {
                         "Id": "28c6b420-f450-4f1b-9594-51a786a3d758",
                         "name": "Message"
                     }
                 },
-                "Id": "c064ec31-2f31-4c08-9f0a-750dcf9b7a69",
+                "Id": "07eb9ce0-9a2d-4337-b398-b87e0dbf4f28",
                 "name": "children",
                 "isArray": true,
                 "type": {
@@ -215,8 +161,8 @@
                 },
                 "value": null
             },
-            "cecfbd42-d9f7-4af3-b223-1a932156d779": {
-                "Id": "cecfbd42-d9f7-4af3-b223-1a932156d779",
+            "3e6724c6-6a05-4127-8016-7eda15756583": {
+                "Id": "3e6724c6-6a05-4127-8016-7eda15756583",
                 "name": "data",
                 "isArray": false,
                 "type": {
@@ -225,10 +171,10 @@
                 },
                 "value": {}
             },
-            "8415e38b-5327-4a04-aaf7-7d4ead40457a": {
-                "1c301d11-e57e-4434-9a83-04052e39368a": {
-                    "fb669dc9-925c-47fd-830e-8b21d18ad1dd": {
-                        "Id": "fb669dc9-925c-47fd-830e-8b21d18ad1dd",
+            "a2a16933-959f-4532-ab8c-6ae0b3f435b4": {
+                "0318aaf4-2a63-4889-95f1-da070f5432d1": {
+                    "67749ad3-2b92-4567-911b-30ce3d716719": {
+                        "Id": "67749ad3-2b92-4567-911b-30ce3d716719",
                         "name": "DefaultMessageType",
                         "isArray": false,
                         "type": {
@@ -237,13 +183,13 @@
                         },
                         "value": null
                     },
-                    "Id": "1c301d11-e57e-4434-9a83-04052e39368a",
+                    "Id": "0318aaf4-2a63-4889-95f1-da070f5432d1",
                     "type": {
                         "Id": "cf08a920-4dd8-48fe-a419-1f7e5b2f1554",
                         "name": "DefaultMessageType"
                     }
                 },
-                "Id": "8415e38b-5327-4a04-aaf7-7d4ead40457a",
+                "Id": "a2a16933-959f-4532-ab8c-6ae0b3f435b4",
                 "name": "type",
                 "isArray": false,
                 "type": {
@@ -252,10 +198,10 @@
                 },
                 "value": null
             },
-            "142a557f-2ffb-4d1b-b5a1-aedd02efaf80": {
-                "3528d412-50ac-4150-a972-8153adb2978e": {
-                    "f8d83a87-a4ca-4ec3-ad15-faf6f1f5c092": {
-                        "Id": "f8d83a87-a4ca-4ec3-ad15-faf6f1f5c092",
+            "267f0793-e3b9-45ee-8315-046fb16ff988": {
+                "1e6ea91f-d9a3-4d20-a796-fd5815200f18": {
+                    "5b7a7aaa-9df5-4963-b5ac-4d6387cd8c79": {
+                        "Id": "5b7a7aaa-9df5-4963-b5ac-4d6387cd8c79",
                         "name": "HighPriority",
                         "isArray": false,
                         "type": {
@@ -264,13 +210,13 @@
                         },
                         "value": null
                     },
-                    "Id": "3528d412-50ac-4150-a972-8153adb2978e",
+                    "Id": "1e6ea91f-d9a3-4d20-a796-fd5815200f18",
                     "type": {
                         "Id": "04d08753-e93a-41e5-8117-4b1c6a75d2f4",
                         "name": "HighPriority"
                     }
                 },
-                "Id": "142a557f-2ffb-4d1b-b5a1-aedd02efaf80",
+                "Id": "267f0793-e3b9-45ee-8315-046fb16ff988",
                 "name": "priority",
                 "isArray": false,
                 "type": {
@@ -279,62 +225,35 @@
                 },
                 "value": null
             },
-            "db4de040-5d6f-46a1-b72e-7abac123cf70": {
-                "c1fe6c19-0a2d-4d2b-97a8-a598dda684a9": {
-                    "e3d44db4-6f7e-48eb-950c-c0e132f6032b": {
-                        "4c4f3637-b45c-4a54-9f9b-fc932d2f6b9f": {
-                            "bdca6199-a306-4767-b440-f0e200a72b7e": {
-                                "Id": "bdca6199-a306-4767-b440-f0e200a72b7e",
-                                "name": "hostPort",
-                                "isArray": false,
-                                "type": {
-                                    "Id": "87cab040-512f-40e5-bf02-16cb70ac4abb",
-                                    "name": "Number"
-                                },
-                                "value": 3000
-                            },
-                            "945d7714-a5c0-4846-aae1-5d8350c6a591": {
-                                "Id": "945d7714-a5c0-4846-aae1-5d8350c6a591",
-                                "name": "hostName",
-                                "isArray": false,
-                                "type": {
-                                    "Id": "78bdce42-14d5-4bf5-9495-277e006940c4",
-                                    "name": "String"
-                                },
-                                "value": "localhost"
-                            },
-                            "Id": "4c4f3637-b45c-4a54-9f9b-fc932d2f6b9f",
-                            "type": {
-                                "Id": "8337317b-386e-4cf9-8738-78bd12f1ec92",
-                                "name": "Address"
-                            }
-                        },
-                        "Id": "e3d44db4-6f7e-48eb-950c-c0e132f6032b",
+            "8a919055-1b54-416c-a864-5d9c6509ad22": {
+                "9cdc3376-0675-4649-8f09-2ce55875d4b2": {
+                    "36cf8c3c-b1ff-4e4a-98b2-218ad8467ec6": {
+                        "Id": "36cf8c3c-b1ff-4e4a-98b2-218ad8467ec6",
                         "name": "address",
                         "isArray": false,
                         "type": {
                             "Id": "8337317b-386e-4cf9-8738-78bd12f1ec92",
                             "name": "Address"
                         },
-                        "value": null
+                        "value": "{}"
                     },
-                    "412c62dd-f98e-4344-9651-2a896acae3b4": {
-                        "Id": "412c62dd-f98e-4344-9651-2a896acae3b4",
+                    "d05e1211-6802-4494-9681-0c2c0395bc9c": {
+                        "Id": "d05e1211-6802-4494-9681-0c2c0395bc9c",
                         "name": "name",
                         "isArray": false,
                         "type": {
                             "Id": "78bdce42-14d5-4bf5-9495-277e006940c4",
                             "name": "String"
                         },
-                        "value": "Apple"
+                        "value": "Tomato"
                     },
-                    "Id": "c1fe6c19-0a2d-4d2b-97a8-a598dda684a9",
+                    "Id": "9cdc3376-0675-4649-8f09-2ce55875d4b2",
                     "type": {
                         "Id": "6f65d180-2553-4bee-a747-73dd88b2feac",
                         "name": "Channel"
                     }
                 },
-                "Id": "db4de040-5d6f-46a1-b72e-7abac123cf70",
+                "Id": "8a919055-1b54-416c-a864-5d9c6509ad22",
                 "name": "channel",
                 "isArray": false,
                 "type": {
@@ -343,13 +262,13 @@
                 },
                 "value": null
             },
-            "Id": "36eaf3d7-3d4b-4115-996a-1a520a45d702",
+            "Id": "fa614cac-2db2-4c4a-b5b3-2849de0fe46d",
             "type": {
                 "Id": "edf8829a-520f-42ac-880a-62258412106a",
                 "name": "Envelope"
             }
         },
-        "Id": "c60a9d1c-baba-45aa-8c2d-7b86d6ce95ad",
+        "Id": "bfd2f678-817a-4797-aa86-e732884cb826",
         "name": "parent",
         "isArray": false,
         "type": {
@@ -358,8 +277,8 @@
         },
         "value": null
     },
-    "c74247a9-7dc4-4a0d-a2c7-ba7b149865b5": {
-        "Id": "c74247a9-7dc4-4a0d-a2c7-ba7b149865b5",
+    "6ecc4f91-ad84-44ee-80f5-4ee05275a116": {
+        "Id": "6ecc4f91-ad84-44ee-80f5-4ee05275a116",
         "name": "children",
         "isArray": true,
         "type": {
@@ -368,8 +287,8 @@
         },
         "value": null
     },
-    "fb4eb9c7-5639-4584-85a7-2fb45727660b": {
-        "Id": "fb4eb9c7-5639-4584-85a7-2fb45727660b",
+    "7d97246e-b515-4ec5-88bb-b4a4e738712c": {
+        "Id": "7d97246e-b515-4ec5-88bb-b4a4e738712c",
         "name": "data",
         "isArray": false,
         "type": {
@@ -377,13 +296,13 @@
             "name": "Object"
         },
         "value": {
-            "message": "Hello From Apple Publisher"
+            "message": "Hello From Tomato Publisher"
         }
     },
-    "c7ee3685-7edc-438f-ae68-cf487c7c16b3": {
-        "1c301d11-e57e-4434-9a83-04052e39368a": {
-            "fb669dc9-925c-47fd-830e-8b21d18ad1dd": {
-                "Id": "fb669dc9-925c-47fd-830e-8b21d18ad1dd",
+    "8f711128-2d5d-4e72-a363-fa7a34dd6f4c": {
+        "0318aaf4-2a63-4889-95f1-da070f5432d1": {
+            "67749ad3-2b92-4567-911b-30ce3d716719": {
+                "Id": "67749ad3-2b92-4567-911b-30ce3d716719",
                 "name": "DefaultMessageType",
                 "isArray": false,
                 "type": {
@@ -392,13 +311,13 @@
                 },
                 "value": null
             },
-            "Id": "1c301d11-e57e-4434-9a83-04052e39368a",
+            "Id": "0318aaf4-2a63-4889-95f1-da070f5432d1",
             "type": {
                 "Id": "cf08a920-4dd8-48fe-a419-1f7e5b2f1554",
                 "name": "DefaultMessageType"
             }
         },
-        "Id": "c7ee3685-7edc-438f-ae68-cf487c7c16b3",
+        "Id": "8f711128-2d5d-4e72-a363-fa7a34dd6f4c",
         "name": "type",
         "isArray": false,
         "type": {
@@ -407,25 +326,25 @@
         },
         "value": null
     },
-    "52a6c714-a309-443f-95ac-82c737f8024c": {
-        "3528d412-50ac-4150-a972-8153adb2978e": {
-            "f8d83a87-a4ca-4ec3-ad15-faf6f1f5c092": {
-                "Id": "f8d83a87-a4ca-4ec3-ad15-faf6f1f5c092",
-                "name": "HighPriority",
+    "78787e9c-8ccb-4a5c-83fc-f3b3c09b84cf": {
+        "e4e944e9-0ac7-41ec-9bc3-982ab50be4c5": {
+            "09a5bfd1-08bf-4ca3-afa6-2c3276e1b3a2": {
+                "Id": "09a5bfd1-08bf-4ca3-afa6-2c3276e1b3a2",
+                "name": "MediumPriority",
                 "isArray": false,
                 "type": {
-                    "Id": "04d08753-e93a-41e5-8117-4b1c6a75d2f4",
-                    "name": "HighPriority"
+                    "Id": "f6fbdf99-e8fb-48c8-9111-79f31e37dc2b",
+                    "name": "MediumPriority"
                 },
                 "value": null
             },
-            "Id": "3528d412-50ac-4150-a972-8153adb2978e",
+            "Id": "e4e944e9-0ac7-41ec-9bc3-982ab50be4c5",
             "type": {
-                "Id": "04d08753-e93a-41e5-8117-4b1c6a75d2f4",
-                "name": "HighPriority"
+                "Id": "f6fbdf99-e8fb-48c8-9111-79f31e37dc2b",
+                "name": "MediumPriority"
             }
         },
-        "Id": "52a6c714-a309-443f-95ac-82c737f8024c",
+        "Id": "78787e9c-8ccb-4a5c-83fc-f3b3c09b84cf",
         "name": "priority",
         "isArray": false,
         "type": {
@@ -434,62 +353,35 @@
         },
         "value": null
     },
-    "4bb10f4e-730d-4bb8-86fb-2f1293a41adb": {
-        "c1fe6c19-0a2d-4d2b-97a8-a598dda684a9": {
-            "e3d44db4-6f7e-48eb-950c-c0e132f6032b": {
-                "4c4f3637-b45c-4a54-9f9b-fc932d2f6b9f": {
-                    "bdca6199-a306-4767-b440-f0e200a72b7e": {
-                        "Id": "bdca6199-a306-4767-b440-f0e200a72b7e",
-                        "name": "hostPort",
-                        "isArray": false,
-                        "type": {
-                            "Id": "87cab040-512f-40e5-bf02-16cb70ac4abb",
-                            "name": "Number"
-                        },
-                        "value": 3000
-                    },
-                    "945d7714-a5c0-4846-aae1-5d8350c6a591": {
-                        "Id": "945d7714-a5c0-4846-aae1-5d8350c6a591",
-                        "name": "hostName",
-                        "isArray": false,
-                        "type": {
-                            "Id": "78bdce42-14d5-4bf5-9495-277e006940c4",
-                            "name": "String"
-                        },
-                        "value": "localhost"
-                    },
-                    "Id": "4c4f3637-b45c-4a54-9f9b-fc932d2f6b9f",
-                    "type": {
-                        "Id": "8337317b-386e-4cf9-8738-78bd12f1ec92",
-                        "name": "Address"
-                    }
-                },
-                "Id": "e3d44db4-6f7e-48eb-950c-c0e132f6032b",
+    "88ce5c94-6498-478e-80db-a285ab78026a": {
+        "9cdc3376-0675-4649-8f09-2ce55875d4b2": {
+            "36cf8c3c-b1ff-4e4a-98b2-218ad8467ec6": {
+                "Id": "36cf8c3c-b1ff-4e4a-98b2-218ad8467ec6",
                 "name": "address",
                 "isArray": false,
                 "type": {
                     "Id": "8337317b-386e-4cf9-8738-78bd12f1ec92",
                     "name": "Address"
                 },
-                "value": null
+                "value": "{}"
             },
-            "412c62dd-f98e-4344-9651-2a896acae3b4": {
-                "Id": "412c62dd-f98e-4344-9651-2a896acae3b4",
+            "d05e1211-6802-4494-9681-0c2c0395bc9c": {
+                "Id": "d05e1211-6802-4494-9681-0c2c0395bc9c",
                 "name": "name",
                 "isArray": false,
                 "type": {
                     "Id": "78bdce42-14d5-4bf5-9495-277e006940c4",
                     "name": "String"
                 },
-                "value": "Apple"
+                "value": "Tomato"
             },
-            "Id": "c1fe6c19-0a2d-4d2b-97a8-a598dda684a9",
+            "Id": "9cdc3376-0675-4649-8f09-2ce55875d4b2",
             "type": {
                 "Id": "6f65d180-2553-4bee-a747-73dd88b2feac",
                 "name": "Channel"
             }
         },
-        "Id": "4bb10f4e-730d-4bb8-86fb-2f1293a41adb",
+        "Id": "88ce5c94-6498-478e-80db-a285ab78026a",
         "name": "channel",
         "isArray": false,
         "type": {
@@ -498,7 +390,7 @@
         },
         "value": null
     },
-    "Id": "40568b64-342a-4cc6-9256-b656af07d26b",
+    "Id": "8197d176-ee61-4272-9054-3519b21589fa",
     "type": {
         "Id": "28c6b420-f450-4f1b-9594-51a786a3d758",
         "name": "Message"

@@ -25,9 +25,8 @@ export class MessageBusAdapter extends MessageBus {
         const channel = new Channel(channelName, recipientAddress);
         const envelope = new Envelope(channel, recipientAddress, priority, messageType);
         super(httpServer, envelope);
-        Container.context = this;
-        Container.reference = envelope;
-        Container.reference = messageSubscription;
+        Container.setReference(this, envelope);
+        Container.setReference(this, messageSubscription);
     }
     /**
      * @param { Priority } priority

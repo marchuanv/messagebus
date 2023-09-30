@@ -7,9 +7,8 @@ import { MessageBus } from './lib/messagebus.mjs';
 import { MessageType } from './lib/messagetype.mjs';
 import { Priority } from './lib/priority.mjs';
 import { MessageSubscription } from './subscription.mjs';
-export class MessageBusAdapter extends MessageBus {
+export class MessageBusAdapter {
     /**
-     * @param { Server } httpServer
      * @param { MessageSubscription } messageSubscription
      * @param { String } channelName
      * @param { String } hostName
@@ -17,7 +16,7 @@ export class MessageBusAdapter extends MessageBus {
      * @param { Number } priority
      * @param { Number } messageType
     */
-    constructor(httpServer, messageSubscription, channelName, hostName, hostPort, priority, messageType) {
+    constructor(messageSubscription, channelName, hostName, hostPort, priority, messageType) {
         if (new.target !== MessageBusAdapter) {
             throw new TypeError(`${MessageBusAdapter.name} can't be extended`);
         }
@@ -33,10 +32,11 @@ export class MessageBusAdapter extends MessageBus {
      * @param { Object } data
      */
     async send(priority, data) {
+        const messageBus = Container.getReference(this, MessageBus.prototype);
         const envelope = Container.getReference(this, Envelope.prototype);
         const message = new Message(envelope.channel, priority, MessageType.Default);
         message.data = data;
         envelope.child = message;
-        await super.send();
+        await messageBus.send(envelope);
     }
 };

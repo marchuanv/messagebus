@@ -24,7 +24,7 @@ export class MessageBusAdapter extends MessageBus {
         const recipientAddress = new Address(hostName, hostPort);
         const channel = new Channel(channelName, recipientAddress);
         const envelope = new Envelope(channel, recipientAddress, priority, messageType);
-        super(httpServer);
+        super(httpServer, envelope);
         Container.context = this;
         Container.reference = envelope;
         Container.reference = messageSubscription;
@@ -34,7 +34,7 @@ export class MessageBusAdapter extends MessageBus {
      * @param { Object } data
      */
     async send(priority, data) {
-        const envelope = Container.get(this, Envelope.prototype);
+        const envelope = Container.getReference(this, Envelope.prototype);
         const message = new Message(envelope.channel, priority, MessageType.Default);
         message.data = data;
         envelope.child = message;

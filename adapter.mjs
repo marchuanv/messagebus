@@ -17,11 +17,10 @@ export class Adapter {
      * @param { String } receiverHostName
      * @param { Number } receiverHostPort
      * @param { MessageType } messageType
-     * @param { Priority } messageType
-     * @param { MessageQueue } messageQueue
+     * @param { Priority } priority
      * @param { AdapterOptions? } adapterOptions
     */
-    constructor(channelName, senderHostName, senderHostPort, receiverHostName, receiverHostPort, messageType, priority, messageQueue, adapterOptions = null) {
+    constructor(channelName, senderHostName, senderHostPort, receiverHostName, receiverHostPort, messageType, priority, adapterOptions = null) {
         if (new.target !== Adapter) {
             throw new TypeError(`${Adapter.name} can't be extended`);
         }
@@ -33,11 +32,13 @@ export class Adapter {
         const _adapterOptions = adapterOptions ? adapterOptions : AdapterOptions.Default;
         const messageBusManager = new MessageBusManager(_adapterOptions);
         Container.setReference(this, messageBusManager);
+        const messageQueue = new MessageQueue();
         Container.setReference(this, messageQueue);
         const messageBus = messageBusManager.ensure(envelope.channel);
-        setImmediate(async () => {
-            await messageBus.receive()
-        });
+        setInterval(async () => {
+            const message = await messageBus.receive();
+            messageQueue.push(message);
+        }, 100);
     }
     /**
      * @param { Priority } priority
@@ -59,5 +60,12 @@ export class Adapter {
         const envelope = Container.getReference(this, Envelope.prototype);
         const messageBusManager = Container.getReference(this, MessageBusManager.prototype);
         messageBusManager.stop(envelope.channel);
+    }
+    /**
+     * @returns { MessageQueue } messageQueue
+    */
+    get messaging(){
+        const messageQueue = Container.getReference(this, MessageQueue.prototype);
+        return messageQueue;
     }
 };

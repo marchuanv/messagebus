@@ -8,6 +8,7 @@ import { MessageBusManager } from './lib/messagebus-manager.mjs';
 import { MessageType } from './lib/messagetype.mjs';
 import { Priority } from './lib/priority.mjs';
 import { SourceAddress } from './lib/sourceAddress.mjs';
+import { MessageQueue } from './message-queue.mjs';
 export class Adapter {
     /**
      * @param { String } channelName
@@ -17,9 +18,10 @@ export class Adapter {
      * @param { Number } receiverHostPort
      * @param { MessageType } messageType
      * @param { Priority } messageType
+     * @param { MessageQueue } messageQueue
      * @param { AdapterOptions? } adapterOptions
     */
-    constructor(channelName, senderHostName, senderHostPort, receiverHostName, receiverHostPort, messageType, priority, adapterOptions = null) {
+    constructor(channelName, senderHostName, senderHostPort, receiverHostName, receiverHostPort, messageType, priority, messageQueue, adapterOptions = null) {
         if (new.target !== Adapter) {
             throw new TypeError(`${Adapter.name} can't be extended`);
         }
@@ -31,6 +33,11 @@ export class Adapter {
         const _adapterOptions = adapterOptions ? adapterOptions : AdapterOptions.Default;
         const messageBusManager = new MessageBusManager(_adapterOptions);
         Container.setReference(this, messageBusManager);
+        Container.setReference(this, messageQueue);
+        const messageBus = messageBusManager.ensure(envelope.channel);
+        setImmediate(async () => {
+            await messageBus.receive()
+        });
     }
     /**
      * @param { Priority } priority

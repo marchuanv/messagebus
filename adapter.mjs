@@ -27,8 +27,6 @@ export class Adapter {
         const source = new SourceAddress(senderHostName, senderHostPort);
         const destination = new DestinationAddress(receiverHostName, receiverHostPort);
         const channel = new Channel(channelName, source, destination);
-        const envelope = new Envelope(channel, priority, messageType);
-        Container.setReference(this, envelope);
         const _adapterOptions = adapterOptions ? adapterOptions : AdapterOptions.Default;
         const messageBusManager = new MessageBusManager(_adapterOptions);
         Container.setReference(this, messageBusManager);
@@ -38,6 +36,13 @@ export class Adapter {
         setInterval(async () => {
             const message = await messageBus.receive();
             messageQueue.push(message);
+        }, 100);
+        setInterval(async () => {
+            const message = await messageQueue.shift();
+            const sent = await messageBus.send(message);
+            if (!sent) {
+              throw new Error(`failed to send message`);
+            }
         }, 100);
     }
     /**

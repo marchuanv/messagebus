@@ -16,9 +16,10 @@ export class Adapter {
      * @param { String } receiverHostName
      * @param { Number } receiverHostPort
      * @param { MessageType } messageType
+     * @param { Priority } messageType
      * @param { AdapterOptions? } adapterOptions
     */
-    constructor(channelName, senderHostName, senderHostPort, receiverHostName, receiverHostPort, messageType, adapterOptions = null) {
+    constructor(channelName, senderHostName, senderHostPort, receiverHostName, receiverHostPort, messageType, priority, adapterOptions = null) {
         if (new.target !== Adapter) {
             throw new TypeError(`${Adapter.name} can't be extended`);
         }

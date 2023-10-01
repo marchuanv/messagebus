@@ -1,20 +1,20 @@
 import crypto from 'node:crypto';
-import http from 'node:http';
+import { Server } from 'node:http';
 import https from 'node:https';
 import pem from 'pem';
 import { Container } from "./lib/container.mjs";
 export class AdapterOptions extends Container {
     /**
-     * @param { https.Server.prototype | http.Server.prototype } value
+     * @param { Server } value
      */
     set server(value) {
         Container.setReference(this, value);
     }
     /**
-     * @returns { https.Server | http.Server }
+     * @returns { Server }
      */
     get server() {
-        return Container.getReference(this, (https.Server.prototype || http.Server.prototype));
+        return Container.getReference(this, Server.prototype);
     }
     /**
      * @returns { AdapterOptions }

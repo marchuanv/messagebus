@@ -34,11 +34,11 @@ export class Adapter {
     /**
      * @param { Priority } priority
      * @param { Object } data
-     */
+    */
     async send(priority, data) {
         const envelope = Container.getReference(this, Envelope.prototype);
         const messageBusManager = Container.getReference(this, MessageBusManager.prototype);
-        const messageBus = messageBusManager.ensureMessageBus(envelope.channel);
+        const messageBus = messageBusManager.ensure(envelope.channel);
         const message = new Message(envelope.channel, priority, MessageType.Default);
         message.data = data;
         envelope.child = message;
@@ -46,5 +46,10 @@ export class Adapter {
         if (!sent) {
             throw new Error(`failed to send envelope`);
         }
+    }
+    close() {
+        const envelope = Container.getReference(this, Envelope.prototype);
+        const messageBusManager = Container.getReference(this, MessageBusManager.prototype);
+        messageBusManager.stop(envelope.channel);
     }
 };

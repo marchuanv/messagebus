@@ -8,7 +8,7 @@ import { MessageBusManager } from './lib/messagebus-manager.mjs';
 import { MessageType } from './lib/messagetype.mjs';
 import { Priority } from './lib/priority.mjs';
 import { SourceAddress } from './lib/sourceAddress.mjs';
-import { MessageQueue } from './message-queue.mjs';
+import { ChannelMessageQueue } from './lib/channel-message-queue.mjs';
 export class Adapter {
     /**
      * @param { String } channelName
@@ -16,11 +16,9 @@ export class Adapter {
      * @param { Number } senderHostPort
      * @param { String } receiverHostName
      * @param { Number } receiverHostPort
-     * @param { MessageType } messageType
-     * @param { Priority } priority
      * @param { AdapterOptions? } adapterOptions
     */
-    constructor(channelName, senderHostName, senderHostPort, receiverHostName, receiverHostPort, messageType, priority, adapterOptions = null) {
+    constructor(channelName, senderHostName, senderHostPort, receiverHostName, receiverHostPort, adapterOptions = null) {
         if (new.target !== Adapter) {
             throw new TypeError(`${Adapter.name} can't be extended`);
         }
@@ -29,48 +27,28 @@ export class Adapter {
         const channel = new Channel(channelName, source, destination);
         const _adapterOptions = adapterOptions ? adapterOptions : AdapterOptions.Default;
         const messageBusManager = new MessageBusManager(_adapterOptions);
-        Container.setReference(this, messageBusManager);
-        const messageQueue = new MessageQueue();
-        Container.setReference(this, messageQueue);
-        const messageBus = messageBusManager.ensure(envelope.channel);
-        setInterval(async () => {
-            const message = await messageBus.receive();
-            messageQueue.push(message);
+        const channelMessageQueue = new ChannelMessageQueue(channel);
+        const messageBus = messageBusManager.ensure(channel);
+        const receiveId = setInterval(async () => {
+            const message = await messageBus.receive(Message.prototype);
+            if (!channel.isOpen) {
+                channelMessageQueue.clear();
+                return clearInterval(receiveId);
+            }
+            channelMessageQueue.push(message);
         }, 100);
-        setInterval(async () => {
-            const message = await messageQueue.shift();
-            const sent = await messageBus.send(message);
-            if (!sent) {
-              throw new Error(`failed to send message`);
+        const sendId = setInterval(async () => {
+            const message = await channelMessageQueue.shift();
+            if (!channel.isOpen) {
+                channelMessageQueue.clear();
+                return clearInterval(sendId);
+            }
+            if (message) {
+                const sent = await messageBus.send(message);
+                if (!sent) {
+                  throw new Error(`failed to send message`);
+                }
             }
         }, 100);
-    }
-    /**
-     * @param { Priority } priority
-     * @param { Object } data
-    */
-    async send(priority, data) {
-        const envelope = Container.getReference(this, Envelope.prototype);
-        const messageBusManager = Container.getReference(this, MessageBusManager.prototype);
-        const messageBus = messageBusManager.ensure(envelope.channel);
-        const message = new Message(envelope.channel, priority, MessageType.Default);
-        message.data = data;
-        envelope.child = message;
-        const sent = await messageBus.send(envelope);
-        if (!sent) {
-            throw new Error(`failed to send envelope`);
-        }
-    }
-    close() {
-        const envelope = Container.getReference(this, Envelope.prototype);
-        const messageBusManager = Container.getReference(this, MessageBusManager.prototype);
-        messageBusManager.stop(envelope.channel);
-    }
-    /**
-     * @returns { MessageQueue } messageQueue
-    */
-    get messaging(){
-        const messageQueue = Container.getReference(this, MessageQueue.prototype);
-        return messageQueue;
     }
 };

@@ -10,6 +10,7 @@ import { Priority } from './lib/priority.mjs';
 import { SourceAddress } from './lib/sourceAddress.mjs';
 import { ChannelMessageQueue } from './lib/channel-message-queue.mjs';
 import { MessageBus } from './lib/messagebus.mjs';
+import { Messaging } from './lib/messaging.mjs';
 export class Adapter {
     /**
      * @param { String } channelName
@@ -29,9 +30,11 @@ export class Adapter {
         const _adapterOptions = adapterOptions ? adapterOptions : AdapterOptions.Default;
         const messageBusManager = new MessageBusManager(_adapterOptions);
         const channelMessageQueue = new ChannelMessageQueue(channel);
+        const messaging = new Messaging(channelMessageQueue);
         Container.setReference(this, channel);
         Container.setReference(this, channelMessageQueue);
         Container.setReference(this, messageBusManager);
+        Container.setReference(this, messaging);
     }
     start() {
         const channel = Container.getReference(this, Channel.prototype);
@@ -65,5 +68,11 @@ export class Adapter {
     stop() {
         const channel = Container.getReference(this, Channel.prototype);
         channel.close();
+    }
+    /**
+     * @returns { Messaging }
+    */
+    get messaging() {
+        return Container.getReference(this, Messaging.prototype);
     }
 };

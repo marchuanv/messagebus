@@ -9,7 +9,7 @@ const applesAdapter = new Adapter('apples', 'localhost', 3000, 'localhost', 3000
 fdescribe('when sending an apple message on the fruit channel', () => {
     it('should notify all apple subscribers', async () => {
         applesAdapter.start();
-        await applesAdapter.send(Priority.High, { message: 'Hello From Apple Publisher' });
+        applesAdapter.messaging.publish(Priority.High, { message: 'Hello From Apple Publisher' });
         expect(JSON.stringify(expectedMsg.data)).toBe(JSON.stringify({ message: 'Hello From Apple Subscriber' }));
         applesAdapter.stop();
     });

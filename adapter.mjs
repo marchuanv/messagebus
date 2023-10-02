@@ -9,6 +9,7 @@ import { MessageType } from './lib/messagetype.mjs';
 import { Priority } from './lib/priority.mjs';
 import { SourceAddress } from './lib/sourceAddress.mjs';
 import { ChannelMessageQueue } from './lib/channel-message-queue.mjs';
+import { MessageBus } from './lib/messagebus.mjs';
 export class Adapter {
     /**
      * @param { String } channelName
@@ -28,14 +29,24 @@ export class Adapter {
         const _adapterOptions = adapterOptions ? adapterOptions : AdapterOptions.Default;
         const messageBusManager = new MessageBusManager(_adapterOptions);
         const channelMessageQueue = new ChannelMessageQueue(channel);
+        Container.setReference(this, channel);
+        Container.setReference(this, channelMessageQueue);
+        Container.setReference(this, messageBusManager);
+    }
+    start() {
+        const channel = Container.getReference(this, Channel.prototype);
+        const channelMessageQueue = Container.getReference(this, ChannelMessageQueue.prototype);
+        const messageBusManager = Container.getReference(this, MessageBusManager.prototype);
         const messageBus = messageBusManager.ensure(channel);
         const receiveId = setInterval(async () => {
             const message = await messageBus.receive(Message.prototype);
-            if (!channel.isOpen) {
-                channelMessageQueue.clear();
-                return clearInterval(receiveId);
+            if (message) {
+                if (!channel.isOpen) {
+                    channelMessageQueue.clear();
+                    return clearInterval(receiveId);
+                }
+                channelMessageQueue.push(message);
             }
-            channelMessageQueue.push(message);
         }, 100);
         const sendId = setInterval(async () => {
             const message = await channelMessageQueue.shift();
@@ -50,5 +61,9 @@ export class Adapter {
                 }
             }
         }, 100);
+    }
+    stop() {
+        const channel = Container.getReference(this, Channel.prototype);
+        channel.close();
     }
 };

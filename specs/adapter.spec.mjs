@@ -29,14 +29,12 @@ const applesAdapter = new Adapter(tomatoMessaging);
 
 fdescribe('when sending a message on the apple channel', () => {
     it('should notify all apple subscribers', async () => {
-        await appleMessaging.ready();
         await applesAdapter.connect();
         await appleMessaging.broadcast({ message: 'Hello From Apple Publisher' });
     });
 });
 describe('when sending a tomato message on the fruit channel', () => {
     it('should notify all tomato subscribers', async () => {
-        await tomatoMessaging.ready();
         await tomatoAdapter.connect();
         await tomatoMessaging.broadcast({ message: 'Hello From Tomato Publisher' });
     });

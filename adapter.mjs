@@ -18,40 +18,42 @@ export class Adapter extends Container {
         Container.setReference(this, messageBusManager);
         Container.setReference(this, messaging);
     }
-    connect() {
-        const messaging = Container.getReference(this, Messaging.prototype);
-        if (!messaging.channel.isOpen) {
-            throw new Error(`${JSON.stringify(messaging.channel)} is closed.`);
+    async connect() {
+        const messaging = await Container.getReference(this, Messaging.prototype);
+        const messagingChannel = (await messaging.getChannel());
+        const messagingQueue = (await messaging.getQueue());
+        if (!(await messagingChannel.isOpen())) {
+            throw new Error(`${JSON.stringify(messagingChannel)} is closed.`);
         }
-        const messageBusManager = Container.getReference(this, MessageBusManager.prototype);
+        const messageBusManager = await Container.getReference(this, MessageBusManager.prototype);
         const receiveId = setInterval(async () => {
-            if (!messaging.channel.isOpen) {
-                messaging.queue.clear();
+            if (!(await messagingChannel.isOpen())) {
+                await messagingQueue.clear();
                 return clearInterval(receiveId);
             }
-            const messageBus = messageBusManager.ensure(messaging.channel);
+            const messageBus = await messageBusManager.ensure(messagingChannel);
             const message = await messageBus.receive(Message.prototype); //blocking wait
-            messaging.queue.push(message);
+            await messagingQueue.push(message);
         }, 100);
         const sendId = setInterval(async () => {
-            if (!messaging.channel.isOpen) {
-                messaging.queue.clear();
+            if (!(await messagingChannel.isOpen())) {
+                await messagingQueue.clear();
                 return clearInterval(sendId);
             }
-            const messageBus = messageBusManager.ensure(messaging.channel);
-            const message = await messaging.queue.shift(); //blocking wait
+            const messageBus = messageBusManager.ensure(messagingChannel);
+            const message = await messagingQueue.shift(); //blocking wait
             const sent = await messageBus.send(message);
             if (!sent) {
                 throw new Error(`failed to send message`);
             }
         }, 100);
         const notifyId = setInterval(async () => {
-            if (!messaging.channel.isOpen) {
-                messaging.queue.clear();
+            if (!(await messagingChannel.isOpen())) {
+                await messagingQueue.clear();
                 return clearInterval(notifyId);
             }
-            const message = await messaging.queue.shift(true); //blocking wait
-            await messaging.handle(message.data);
+            const message = await messagingQueue.shift(true); //blocking wait
+            await messaging.handle((await message.getData()));
         }, 100);
     }
 };

@@ -7,14 +7,14 @@ export class AdapterOptions extends Container {
     /**
      * @param { Server } value
      */
-    set server(value) {
-        Container.setReference(this, value);
+    async setServer(value) {
+        await Container.setReference(this, value);
     }
     /**
      * @returns { Server }
      */
-    get server() {
-        return Container.getReference(this, Server.prototype);
+    async getServer() {
+        return await Container.getReference(this, Server.prototype);
     }
     /**
      * @returns { AdapterOptions }
@@ -25,6 +25,7 @@ export class AdapterOptions extends Container {
 }
 class DefaultServerOptions extends AdapterOptions {
     constructor() {
+        super();
         const credentials = { key: null, cert: null, passphrase: crypto.randomUUID() };
         pem.createCertificate({ days: 365, selfSigned: true }, async (err, keys) => {
             if (err) {
@@ -32,7 +33,7 @@ class DefaultServerOptions extends AdapterOptions {
             }
             credentials.key = keys.clientKey;
             credentials.cert = keys.certificate;
-            super.server = https.createServer(credentials);
+            await super.setServer(https.createServer(credentials));
         });
     }
 }

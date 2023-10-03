@@ -1,23 +1,23 @@
 
 import { Adapter } from '../adapter.mjs';
-import { MessageType } from '../lib/messagetype.mjs';
 import { Messaging } from '../lib/messaging.mjs';
-import { Priority } from '../lib/priority.mjs';
 
 class AppleMessaging extends Messaging {
     constructor() {
         super('apples', 'localhost', 3000, 'localhost', 3000);
     }
-    callback(data) {
+    handle(data) {
         expect(JSON.stringify(data)).toBe(JSON.stringify({ message: 'Hello From Apple Publisher' }));
+        this.broadcast({ message: 'Hello From Apple Subscriber' });
     }
 }
 class TomatoMessaging extends Messaging {
     constructor() {
         super('tomato', 'localhost', 3000, 'localhost', 3000);
     }
-    callback(data) {
+    handle(data) {
         expect(JSON.stringify(data)).toBe(JSON.stringify({ message: 'Hello From Tomato Publisher' }));
+        this.broadcast({ message: 'Hello From Tomato Subscriber' });
     }
 }
 

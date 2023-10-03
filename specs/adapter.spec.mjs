@@ -2,7 +2,7 @@
 import { Adapter } from '../adapter.mjs';
 import { Messaging } from '../lib/messaging.mjs';
 
-class AppleMessaging extends Messaging {
+export class AppleMessaging extends Messaging {
     constructor() {
         super('apples', 'localhost', 3000, 'localhost', 3000);
     }
@@ -11,7 +11,7 @@ class AppleMessaging extends Messaging {
         await this.broadcast({ message: 'Hello From Apple Subscriber' });
     }
 }
-class TomatoMessaging extends Messaging {
+export class TomatoMessaging extends Messaging {
     constructor() {
         super('tomato', 'localhost', 3000, 'localhost', 3000);
     }

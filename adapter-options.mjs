@@ -23,7 +23,7 @@ export class AdapterOptions extends Container {
         return defaultServerOptions;
     }
 }
-class DefaultServerOptions extends AdapterOptions {
+export class DefaultServerOptions extends AdapterOptions {
     constructor() {
         super();
         const credentials = { key: null, cert: null, passphrase: crypto.randomUUID() };

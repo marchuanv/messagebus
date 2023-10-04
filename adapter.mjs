@@ -34,7 +34,7 @@ export class Adapter extends Container {
             const messageBus = await messageBusManager.ensure(messagingChannel);
             const message = await messageBus.receive(Message.prototype); //blocking wait
             await messagingQueue.push(message);
-        }, true);
+        }, false);
         this.task(async () => {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
@@ -46,14 +46,15 @@ export class Adapter extends Container {
             if (!sent) {
                 throw new Error(`failed to send message`);
             }
-        }, true);
+        }, false);
         this.task(async () => {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
                 return true;
             }
             const message = await messagingQueue.shift(true); //blocking wait
-            await messaging.handle((await message.getData()));
-        }, true);
+            const data = await message.getData();
+            await messaging.handle(data);
+        }, false);
     }
 };

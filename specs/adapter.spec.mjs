@@ -22,10 +22,10 @@ export class TomatoMessaging extends Messaging {
 }
 
 const appleMessaging = new AppleMessaging();
-const tomatoMessaging = new TomatoMessaging();
+const applesAdapter = new Adapter(appleMessaging);
 
-const tomatoAdapter = new Adapter(appleMessaging);
-const applesAdapter = new Adapter(tomatoMessaging);
+const tomatoMessaging = new TomatoMessaging();
+const tomatoAdapter = new Adapter(tomatoMessaging);
 
 fdescribe('when sending a message on the apple channel', () => {
     it('should notify all apple subscribers', async (done) => {

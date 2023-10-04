@@ -15,8 +15,8 @@ export class Adapter extends Container {
         super();
         const _adapterOptions = adapterOptions ? adapterOptions : AdapterOptions.Default;
         const messageBusManager = new MessageBusManager(_adapterOptions);
-        Container.setReference(this, messageBusManager);
-        Container.setReference(this, messaging);
+        Container.setReference(this, messageBusManager, MessageBusManager.prototype);
+        Container.setReference(this, messaging, Message.prototype);
     }
     async connect() {
         const messaging = await Container.getReference(this, Messaging.prototype);

@@ -8,13 +8,13 @@ export class AdapterOptions extends Container {
      * @param { Server } value
      */
     async setServer(value) {
-        await Container.setReference(this, value);
+        await Container.setReference(this, value, Server.prototype, 'httpServer');
     }
     /**
      * @returns { Server }
      */
     async getServer() {
-        return await Container.getReference(this, Server.prototype);
+        return await Container.getReference(this, Server.prototype, 'httpServer');
     }
     /**
      * @returns { AdapterOptions }

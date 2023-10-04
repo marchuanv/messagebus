@@ -26,36 +26,37 @@ export class Adapter extends Container {
             throw new Error(`${JSON.stringify(messagingChannel)} is closed.`);
         }
         const messageBusManager = await Container.getReference(this, MessageBusManager.prototype);
-        // const queueServiceId = setInterval(() => {
-        setImmediate.call(this, async () => {
-            if (!(await messagingChannel.isOpen())) {
-                await messagingQueue.clear();
-                // return clearInterval(queueServiceId);
-            }
+        this.poll(async () => {
             const messageBus = await messageBusManager.ensure(messagingChannel);
             const message = await messageBus.receive(Message.prototype); //blocking wait
             await messagingQueue.push(message);
-        });
-        setImmediate.call(this, async () => {
+        }, async () => {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
-                // return clearInterval(queueServiceId);
+                return true;
             }
+        });
+        this.poll(async () => {
             const messageBus = await messageBusManager.ensure(messagingChannel);
             const message = await messagingQueue.shift(); //blocking wait
             const sent = await messageBus.send(message);
             if (!sent) {
                 throw new Error(`failed to send message`);
             }
-        });
-        setImmediate.call(this, async () => {
+        }, async () => {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
-                // return clearInterval(queueServiceId);
+                return true;
             }
+        });
+        this.poll(async () => {
             const message = await messagingQueue.shift(true); //blocking wait
             await messaging.handle((await message.getData()));
+        }, async () => {
+            if (!(await messagingChannel.isOpen())) {
+                await messagingQueue.clear();
+                return true;
+            }
         });
-        // }, 1000);
     }
 };

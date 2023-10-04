@@ -27,36 +27,33 @@ export class Adapter extends Container {
         }
         const messageBusManager = await Container.getReference(this, MessageBusManager.prototype);
         this.poll(async () => {
-            const messageBus = await messageBusManager.ensure(messagingChannel);
-            const message = await messageBus.receive(Message.prototype); //blocking wait
-            await messagingQueue.push(message);
-        }, async () => {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
                 return true;
             }
+            const messageBus = await messageBusManager.ensure(messagingChannel);
+            const message = await messageBus.receive(Message.prototype); //blocking wait
+            await messagingQueue.push(message);
         });
         this.poll(async () => {
+            if (!(await messagingChannel.isOpen())) {
+                await messagingQueue.clear();
+                return true;
+            }
             const messageBus = await messageBusManager.ensure(messagingChannel);
             const message = await messagingQueue.shift(); //blocking wait
             const sent = await messageBus.send(message);
             if (!sent) {
                 throw new Error(`failed to send message`);
             }
-        }, async () => {
-            if (!(await messagingChannel.isOpen())) {
-                await messagingQueue.clear();
-                return true;
-            }
         });
         this.poll(async () => {
-            const message = await messagingQueue.shift(true); //blocking wait
-            await messaging.handle((await message.getData()));
-        }, async () => {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
                 return true;
             }
+            const message = await messagingQueue.shift(true); //blocking wait
+            await messaging.handle((await message.getData()));
         });
     }
 };

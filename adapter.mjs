@@ -26,34 +26,36 @@ export class Adapter extends Container {
             throw new Error(`${JSON.stringify(messagingChannel)} is closed.`);
         }
         const messageBusManager = await Container.getReference(this, MessageBusManager.prototype);
-        const receiveId = setInterval(async () => {
+        // const queueServiceId = setInterval(() => {
+        setImmediate.call(this, async () => {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
-                return clearInterval(receiveId);
+                // return clearInterval(queueServiceId);
             }
             const messageBus = await messageBusManager.ensure(messagingChannel);
             const message = await messageBus.receive(Message.prototype); //blocking wait
             await messagingQueue.push(message);
-        }, 100);
-        const sendId = setInterval(async () => {
+        });
+        setImmediate.call(this, async () => {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
-                return clearInterval(sendId);
+                // return clearInterval(queueServiceId);
             }
-            const messageBus = messageBusManager.ensure(messagingChannel);
+            const messageBus = await messageBusManager.ensure(messagingChannel);
             const message = await messagingQueue.shift(); //blocking wait
             const sent = await messageBus.send(message);
             if (!sent) {
                 throw new Error(`failed to send message`);
             }
-        }, 100);
-        const notifyId = setInterval(async () => {
+        });
+        setImmediate.call(this, async () => {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
-                return clearInterval(notifyId);
+                // return clearInterval(queueServiceId);
             }
             const message = await messagingQueue.shift(true); //blocking wait
             await messaging.handle((await message.getData()));
-        }, 100);
+        });
+        // }, 1000);
     }
 };

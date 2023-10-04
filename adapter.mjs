@@ -26,7 +26,7 @@ export class Adapter extends Container {
             throw new Error(`${JSON.stringify(messagingChannel)} is closed.`);
         }
         const messageBusManager = await Container.getReference(this, MessageBusManager.prototype);
-        this.poll(async () => {
+        this.task(async () => {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
                 return true;
@@ -34,8 +34,8 @@ export class Adapter extends Container {
             const messageBus = await messageBusManager.ensure(messagingChannel);
             const message = await messageBus.receive(Message.prototype); //blocking wait
             await messagingQueue.push(message);
-        });
-        this.poll(async () => {
+        }, true);
+        this.task(async () => {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
                 return true;
@@ -46,14 +46,14 @@ export class Adapter extends Container {
             if (!sent) {
                 throw new Error(`failed to send message`);
             }
-        });
-        this.poll(async () => {
+        }, true);
+        this.task(async () => {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
                 return true;
             }
             const message = await messagingQueue.shift(true); //blocking wait
             await messaging.handle((await message.getData()));
-        });
+        }, true);
     }
 };

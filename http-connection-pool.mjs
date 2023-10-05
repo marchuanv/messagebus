@@ -5,6 +5,19 @@ import https from 'node:https';
 import pem from 'pem';
 import { Container } from "./lib/container.mjs";
 
+const credentials = {
+    key: null,
+    cert: null,
+    passphrase: crypto.randomUUID()
+};
+pem.createCertificate({ days: 365, selfSigned: true }, (err, keys) => {
+    if (err) {
+        throw err
+    }
+    credentials.key = keys.clientKey;
+    credentials.cert = keys.certificate;
+});
+
 export class Connection extends Container {
     /**
      * @param { Server } server
@@ -51,19 +64,7 @@ class SecureHttpConnection extends Connection {
      * @param { Number } port
      */
     constructor(port) {
-        const credentials = {
-            key: null,
-            cert: null,
-            passphrase: crypto.randomUUID()
-        };
         const connection = https.createServer(credentials);
-        pem.createCertificate({ days: 365, selfSigned: true }, (err, keys) => {
-            if (err) {
-                throw err
-            }
-            credentials.key = keys.clientKey;
-            credentials.cert = keys.certificate;
-        });
         super(connection, port, true);
     }
 }

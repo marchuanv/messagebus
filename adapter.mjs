@@ -3,6 +3,7 @@ import { Container } from './lib/container.mjs';
 import { Message } from './lib/message.mjs';
 import { MessageBusManager } from './lib/messagebus-manager.mjs';
 import { Messaging } from './lib/messaging.mjs';
+import { Task } from './lib/task.mjs';
 export class Adapter extends Container {
     /**
      * @param { Messaging } messaging
@@ -14,18 +15,19 @@ export class Adapter extends Container {
         }
         super();
         const messageBusManager = new MessageBusManager(httpConnectionPool);
-        Container.setReference(this, messageBusManager, MessageBusManager.prototype);
-        Container.setReference(this, messaging, Message.prototype);
+        super.setReference(messageBusManager, MessageBusManager.prototype);
+        super.setReference(messaging, Messaging.prototype);
     }
     async connect() {
-        const messaging = await Container.getReference(this, Messaging.prototype);
-        const messagingChannel = (await messaging.getChannel());
-        const messagingQueue = (await messaging.getQueue());
+        const messaging = await this.getReference(Messaging.prototype);
+        const messagingChannel = await messaging.getChannel();
+        const messagingQueue = await messaging.getQueue();
         if (!(await messagingChannel.isOpen())) {
             throw new Error(`${JSON.stringify(messagingChannel)} is closed.`);
         }
-        const messageBusManager = await Container.getReference(this, MessageBusManager.prototype);
-        this.task(async () => {
+        const messageBusManager = await super.getReference(MessageBusManager.prototype);
+
+        Task.create(this).run(null, async function () {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
                 return true;
@@ -33,8 +35,9 @@ export class Adapter extends Container {
             const messageBus = await messageBusManager.ensure(messagingChannel);
             const message = await messageBus.receive(Message.prototype); //blocking wait
             await messagingQueue.push(message);
-        }, false);
-        this.task(async () => {
+        });
+
+        Task.create(this).run(null, async function () {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
                 return true;
@@ -45,8 +48,9 @@ export class Adapter extends Container {
             if (!sent) {
                 throw new Error(`failed to send message`);
             }
-        }, false);
-        this.task(async () => {
+        });
+
+        Task.create(this).run(null, async function () {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
                 return true;
@@ -54,6 +58,6 @@ export class Adapter extends Container {
             const message = await messagingQueue.shift(true); //blocking wait
             const data = await message.getData();
             await messaging.handle(data);
-        }, false);
+        });
     }
 };

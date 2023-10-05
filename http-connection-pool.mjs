@@ -4,6 +4,7 @@ import http, { Server } from 'node:http';
 import https from 'node:https';
 import pem from 'pem';
 import { Container } from "./lib/container.mjs";
+import { Task } from './lib/task.mjs';
 
 const credentials = {
     key: null,
@@ -24,28 +25,29 @@ export class Connection extends Container {
     */
     constructor(server, port, isSecure = true) {
         super();
-        Container.setReference(this, server, Server.prototype, 'server');
-        Container.setProperty(this, { isSecure }, Boolean.prototype);
-        Container.setProperty(this, { port }, Number.prototype);
+        super.setReference(server, Server.prototype, 'server');
+        super.setProperty({ isSecure }, Boolean.prototype);
+        super.setProperty({ port }, Number.prototype);
     }
     async isSecure() {
-        return await Container.getProperty(this, { isSecure: null }, Boolean.prototype);
+        return await super.getProperty({ isSecure: null }, Boolean.prototype);
     }
     async getPort() {
-        return await Container.getProperty(this, { port: null }, Number.prototype);
+        return await super.getProperty({ port: null }, Number.prototype);
     }
     async open() {
-        return this.promise(async (resolve) => {
-            const server = await Container.getReference(this, Server.prototype, 'server');
-            const port = await this.getPort();
+        return Task.create(this).run(null, async function (instance) {
+            const task = this;
+            const server = await instance.getReference(Server.prototype, 'server');
+            const port = await instance.getPort();
             server.listen(port, () => {
                 console.log(`listening on port ${port}`);
-                resolve();
+                task.results = true;
             });
         });
     }
     async getServer() {
-        return await Container.getReference(this, Server.prototype, 'server');
+        return await super.getReference(Server.prototype, 'server');
     }
 }
 
@@ -77,9 +79,9 @@ export class HttpConnectionPool extends Container {
         super();
         if (server) {
             const existingConnection = new Connection(server);
-            Container.setReference(this, [existingConnection], Connection.prototype, 'connections');
+            super.setReference([existingConnection], Connection.prototype, 'connections');
         } else {
-            Container.setReference(this, [], Connection.prototype, 'connections');
+            super.setReference([], Connection.prototype, 'connections');
         }
     }
     /**
@@ -87,33 +89,28 @@ export class HttpConnectionPool extends Container {
      * @returns { Connection }
      */
     async connect(channel) {
-        const sourceAddress = await channel.getSource();
-        const port = await sourceAddress.getHostPort();
-        const isSecure = await channel.isSecure();
-
-        const connections = await Container.getReference(this, Server.prototype, 'connections');
-        let connection = null;
-        for (const con of connections) {
-            if ((await findConnection(con, port, isSecure))) {
-                connection = con;
-                break;
-            }
-        };
-        if (connection) {
-            return connection;
-        } else {
+        return Task.create(this).run(Connection.prototype, async function (instance) {
+            const sourceAddress = await channel.getSource();
+            const port = await sourceAddress.getHostPort();
+            const isSecure = await channel.isSecure();
+            const connections = await instance.getReference(Server.prototype, 'connections');
+            for (const con of connections) {
+                if ((await findConnection(con, port, isSecure))) {
+                    return con;
+                }
+            };
             if (isSecure) {
                 const newConnection = new SecureHttpConnection(port);
-                await newConnection.open();
                 connections.push(newConnection);
+                await newConnection.open();
                 return newConnection;
             } else {
                 const newConnection = new HttpConnection(port);
-                await newConnection.open();
                 connections.push(newConnection);
+                await newConnection.open();
                 return newConnection;
             }
-        }
+        });
     }
 }
 async function findConnection(con, port, isSecure) {

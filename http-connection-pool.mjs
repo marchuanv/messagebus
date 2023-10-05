@@ -95,6 +95,7 @@ export class HttpConnectionPool extends Container {
         for (const con of connections) {
             if ((await findConnection(con, port, isSecure))) {
                 connection = con;
+                break;
             }
         };
         if (connection) {

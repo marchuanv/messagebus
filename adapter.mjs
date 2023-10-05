@@ -1,4 +1,4 @@
-import { AdapterOptions } from './adapter-options.mjs';
+import { HttpConnectionPool } from './http-connection-pool.mjs';
 import { Container } from './lib/container.mjs';
 import { Message } from './lib/message.mjs';
 import { MessageBusManager } from './lib/messagebus-manager.mjs';
@@ -6,15 +6,14 @@ import { Messaging } from './lib/messaging.mjs';
 export class Adapter extends Container {
     /**
      * @param { Messaging } messaging
-     * @param { AdapterOptions? } adapterOptions
+     * @param { HttpConnectionPool } httpConnectionPool
     */
-    constructor(messaging, adapterOptions = null) {
+    constructor(messaging, httpConnectionPool) {
         if (new.target !== Adapter) {
             throw new TypeError(`${Adapter.name} can't be extended`);
         }
         super();
-        const _adapterOptions = adapterOptions ? adapterOptions : AdapterOptions.Default;
-        const messageBusManager = new MessageBusManager(_adapterOptions);
+        const messageBusManager = new MessageBusManager(httpConnectionPool);
         Container.setReference(this, messageBusManager, MessageBusManager.prototype);
         Container.setReference(this, messaging, Message.prototype);
     }
@@ -41,7 +40,7 @@ export class Adapter extends Container {
                 return true;
             }
             const messageBus = await messageBusManager.ensure(messagingChannel);
-            const message = await messagingQueue.shift(); //blocking wait
+            const message = await messagingQueue.shift(false); //blocking wait
             const sent = await messageBus.send(message);
             if (!sent) {
                 throw new Error(`failed to send message`);

@@ -36,7 +36,7 @@ export class Connection extends Container {
         return await super.getProperty({ port: null }, Number.prototype);
     }
     async open() {
-        return Task.create(this).run(null, async function (instance) {
+        return Task.create('open', this).run(null, async function (instance) {
             const task = this;
             const server = await instance.getReference(Server.prototype, 'server');
             const port = await instance.getPort();
@@ -89,7 +89,7 @@ export class HttpConnectionPool extends Container {
      * @returns { Connection }
      */
     async connect(channel) {
-        return Task.create(this).run(Connection.prototype, async function (instance) {
+        return Task.create('connect', this).run(Connection.prototype, async function (instance) {
             const sourceAddress = await channel.getSource();
             const port = await sourceAddress.getHostPort();
             const isSecure = await channel.isSecure();

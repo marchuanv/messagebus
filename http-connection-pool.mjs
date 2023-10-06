@@ -37,14 +37,17 @@ export class Connection extends Container {
         return await super.getProperty({ port: null }, Number.prototype);
     }
     async open() {
-        return Task.create('open', this, { priority: Priority.Medium }).run(null, async function (instance) {
+        return Task.create('open', this, { priority: Priority.Medium }).queue(null, async function (instance) {
             const task = this;
             const server = await instance.getReference(Server.prototype, 'server');
             const port = await instance.getPort();
-            server.listen(port, () => {
-                console.log(`listening on port ${port}`);
+            if (server.listening) {
                 task.results = true;
-            });
+            } else {
+                server.listen(port, () => {
+                    console.log(`listening on port ${port}`);
+                });
+            }
         });
     }
     async getServer() {
@@ -90,7 +93,7 @@ export class HttpConnectionPool extends Container {
      * @returns { Connection }
      */
     async connect(channel) {
-        return Task.create('connect', this).run(Connection.prototype, async function (instance) {
+        return Task.create('connect', this).queue(Connection.prototype, async function (instance) {
             const sourceAddress = await channel.getSource();
             const port = await sourceAddress.getHostPort();
             const isSecure = await channel.isSecure();

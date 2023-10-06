@@ -4,6 +4,7 @@ import http, { Server } from 'node:http';
 import https from 'node:https';
 import pem from 'pem';
 import { Container } from "./lib/container.mjs";
+import { Priority } from './lib/priority.mjs';
 import { Task } from './lib/task.mjs';
 
 const credentials = {
@@ -36,7 +37,7 @@ export class Connection extends Container {
         return await super.getProperty({ port: null }, Number.prototype);
     }
     async open() {
-        return Task.create('open', this).run(null, async function (instance) {
+        return Task.create('open', this, { priority: Priority.Medium }).run(null, async function (instance) {
             const task = this;
             const server = await instance.getReference(Server.prototype, 'server');
             const port = await instance.getPort();

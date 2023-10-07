@@ -3,7 +3,6 @@ import { Adapter } from '../adapter.mjs';
 import { HttpConnectionPool } from '../http-connection-pool.mjs';
 import { Messaging } from '../lib/messaging.mjs';
 
-
 export class ClientAppleMessaging extends Messaging {
     constructor() {
         super('apples', 'localhost', 3000, 'localhost', 4000);

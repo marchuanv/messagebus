@@ -3,6 +3,7 @@ import { Container } from './lib/container.mjs';
 import { Message } from './lib/message.mjs';
 import { MessageBusManager } from './lib/messagebus-manager.mjs';
 import { Messaging } from './lib/messaging.mjs';
+import { TaskFlag } from './lib/task-flag.mjs';
 import { Task } from './lib/task.mjs';
 export class Adapter extends Container {
     /**
@@ -27,7 +28,9 @@ export class Adapter extends Container {
         }
         const messageBusManager = await super.getReference(MessageBusManager.prototype);
 
-        Task.create('receive', this, { onceOff: false }).queue(null, async function () {
+        Task.create('receive', this, null, [
+            TaskFlag.HandleErrors, TaskFlag.LowPriority, TaskFlag.Repeat 
+        ]).queue(null, async function () {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
                 return true;
@@ -37,7 +40,9 @@ export class Adapter extends Container {
             await messagingQueue.push(message);
         });
 
-        Task.create('send', this, { onceOff: false }).queue(null, async function () {
+        Task.create('send', this, null, [ 
+            TaskFlag.HandleErrors , TaskFlag.LowPriority , TaskFlag.Repeat 
+        ]).queue(null, async function () {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
                 return true;
@@ -50,7 +55,9 @@ export class Adapter extends Container {
             }
         });
 
-        Task.create('handle', this, { onceOff: false }).queue(null, async function () {
+        Task.create('handle', this, null, [
+            TaskFlag.HandleErrors , TaskFlag.LowPriority , TaskFlag.Repeat 
+        ]).queue(null, async function () {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
                 return true;

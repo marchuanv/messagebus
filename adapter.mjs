@@ -27,7 +27,7 @@ export class Adapter extends Container {
         }
         const messageBusManager = await super.getReference(MessageBusManager.prototype);
 
-        Task.create('receive', this, { logRunning: true }).queue(null, async function () {
+        Task.create('receive', this, { onceOff: false }).queue(null, async function () {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
                 return true;
@@ -37,7 +37,7 @@ export class Adapter extends Container {
             await messagingQueue.push(message);
         });
 
-        Task.create('send', this, { logRunning: true }).queue(null, async function () {
+        Task.create('send', this, { onceOff: false }).queue(null, async function () {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
                 return true;
@@ -50,7 +50,7 @@ export class Adapter extends Container {
             }
         });
 
-        Task.create('handle', this, { logRunning: true }).queue(null, async function () {
+        Task.create('handle', this, { onceOff: false }).queue(null, async function () {
             if (!(await messagingChannel.isOpen())) {
                 await messagingQueue.clear();
                 return true;
